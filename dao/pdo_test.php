@@ -1,28 +1,12 @@
-<?php
 //Kết nối pdo
-$host = 'localhost';
-$dbname = 'ameweb_admin';
-$username = 'root';
-$password = '';
-
-// Khởi tạo đối tượng PDO và thiết lập các thuộc tính
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-    exit;
-}
-
 function pdo_get_connection(){
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "ameweb_admin";
     try{
         $conn = new PDO(
             "mysql:host=$servername;
-            $dbname", 
+            dbname=ameweb_admin", 
             $username, 
             $password
         );
@@ -107,5 +91,4 @@ function pdo_get_connection(){
        }
     //array_values($row)[0]
 
-?>
-
+?> -->
