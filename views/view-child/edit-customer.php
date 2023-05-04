@@ -158,8 +158,8 @@ $customer = $stmt->fetch();
 
 <!-- <div class="container">
 
-  <h1>Quản lý khách hàng</h1>
 
+<<<<<<< HEAD
   <table>
     <thead>
       <tr>
@@ -281,3 +281,7 @@ $customer = $stmt->fetch();
     });
   });
 </script>
+=======
+
+</html>
+>>>>>>> c61814ab69562c6b0d7130a2d0278e455e01c1e0
