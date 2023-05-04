@@ -16,6 +16,34 @@ $customer = $stmt->fetch();
             <form method="POST" action="" id="formEditCs">
               <div class="row">
                 <div class="col-6 from-mn-warpper mb-20">
+                  <div>
+                    <h6 class="card-title">Thông tin AMEWEB</h6>
+                  </div>
+                  <div class="input-group">
+                    <label class="label-input" for="id_customer">ID Host:</label>
+                    <input required class="ctrl-input " type="text" id="id_customer" name="id_customer"
+                      value="<?php echo $customer['id_customer']; ?>">
+                    <input required class="ctrl-input" hidden type="text" id="id" value="<?php echo $customer['id'] ?>">
+                  </div>
+                  <div class="input-group">
+                    <label class="label-input" for="id_customer">User Host:</label>
+                    <input required class="ctrl-input " type="text" id="id_customer" name="id_customer"
+                      value="<?php echo $customer['id_customer']; ?>">
+                    <input required class="ctrl-input" hidden type="text" id="id" value="<?php echo $customer['id'] ?>">
+                  </div>
+                  <div class="input-group">
+                    <label class="label-input" for="id_customer">Password Host:</label>
+                    <input required class="ctrl-input " type="text" id="id_customer" name="id_customer"
+                      value="<?php echo $customer['id_customer']; ?>">
+                    <input required class="ctrl-input" hidden type="text" id="id" value="<?php echo $customer['id'] ?>">
+                  </div>
+                </div>
+
+                <div class="col-6 from-mn-warpper mb-20">
+                  <div>
+                    <h6 class="card-title">Thông tin khách hàng</h6>
+                  </div>
+
                   <div class="input-group">
                     <label class="label-input" for="id_customer">Mã khách hàng:</label>
                     <input required class="ctrl-input " type="text" id="id_customer" name="id_customer"
@@ -58,9 +86,7 @@ $customer = $stmt->fetch();
                     <input required class="ctrl-input " type="text" id="password_user" name="password_user"
                       value="<?php echo $customer['password_user']; ?>">
                   </div>
-                </div>
 
-                <div class="col-6 from-mn-warpper mb-20">
                   <div class="input-group">
                     <label class="label-input" for="admin_login">Tài khoản Admin:</label>
                     <input required class="ctrl-input " type="text" id="admin_login" name="admin_login"
