@@ -14,6 +14,35 @@ require_once './dao/pdo.php';
             <form method="POST" action="">
               <div class="row">
                 <div class="col-6 from-mn-warpper mb-20">
+                  <div>
+                    <h6 class="card-title">Thông tin AMEWEB</h6>
+                  </div>
+                  <div class="input-group">
+                    <label class="label-input" for="id_host">ID Host: </label>
+                    <input class="ctrl-input" type="text" id="id_host" name="id_host"><br><br>
+                  </div>
+                  <div class="input-group">
+                    <label class="label-input" for="user_host">User Host:</label>
+                    <input class="ctrl-input" type="text" id="user_host" name="user_host"><br><br>
+                  </div>
+                  <div class="input-group">
+                    <label class="label-input" for="admin_login">Tài khoản Admin:</label>
+                    <input class="ctrl-input" type="text" id="admin_login" name="admin_login"><br><br>
+                  </div>
+                  <div class="input-group">
+                    <label class="label-input" for="password_host">Password Host:</label>
+                    <input class="ctrl-input" type="text" id="password_host" name="password_host"><br><br>
+                  </div>
+                  <div class="input-group">
+                    <label class="label-input" for="password_admin">Mật khẩu admin:</label>
+                    <input class="ctrl-input" type="text" id="password_admin" name="password_admin"><br><br>
+                  </div>
+                </div>
+
+                <div class="col-6 from-mn-warpper mb-20">
+                  <div>
+                    <h6 class="card-title">Thông tin khách hàng</h6>
+                  </div>
                   <div class="input-group">
                     <label class="label-input" for="id_customer">Mã khách hàng:</label>
                     <input class="ctrl-input" type="text" id="id_customer" name="id_customer"><br><br>
@@ -47,17 +76,7 @@ require_once './dao/pdo.php';
                     <label class="label-input" for="password_user">Mật khẩu khách hàng:</label>
                     <input class="ctrl-input" type="text" id="password_user" name="password_user"><br><br>
                   </div>
-                </div>
 
-                <div class="col-6 from-mn-warpper mb-20">
-                  <div class="input-group">
-                    <label class="label-input" for="admin_login">Tài khoản Admin:</label>
-                    <input class="ctrl-input" type="text" id="admin_login" name="admin_login"><br><br>
-                  </div>
-                  <div class="input-group">
-                    <label class="label-input" for="password_admin">Mật khẩu admin:</label>
-                    <input class="ctrl-input" type="text" id="password_admin" name="password_admin"><br><br>
-                  </div>
 
                   <div class="input-group">
                     <label class="label-input" for="customer_mail">Email khách hàng:</label>

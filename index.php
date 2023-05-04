@@ -34,6 +34,9 @@ try {
                     case 'editUser':
                         require_once './views/view-child/edit-customer.php';
                         break;
+                    case 'viewUser':
+                        require_once './views/view-child/view-customer.php';
+                        break;
 
                     default:
                         require_once './views/view-child/list_customer.php';

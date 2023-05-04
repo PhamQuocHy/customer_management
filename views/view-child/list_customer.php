@@ -90,8 +90,8 @@ $customers = $stmt->fetchAll();
                       <a href="?action=editUser&id=<?php echo $customer['id'] ?>" class="btn btn-primary btn-edit">Sửa</a>
                     </td>
                     <td>
-                      <a href="?action=view&id=<?php echo $customer['id'] ?>" class="btn">
-                        <i class="mdi mdi-eye-outline btn btn-primary"></i>
+                      <a href="?action=viewUser&id=<?php echo $customer['id'] ?>" class="btn btn-primary">
+                        <i style="margin: 0;" class="mdi mdi-eye-outline position-icon"></i>
                       </a>
                     </td>
 

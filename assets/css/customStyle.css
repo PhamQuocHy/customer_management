@@ -3,6 +3,10 @@
     top: 2px;
 }
 
+.ctrl-input__span {
+    color: var(--text-color);
+}
+
 .btn {
     border: none;
     padding: 6px 10px;
