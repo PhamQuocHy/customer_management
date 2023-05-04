@@ -21,7 +21,7 @@
                     <span class="menu-title">Thống kê</span>
                 </a>
             </li>
-            <li class="nav-item menu-items">
+            <li id="cateUser" class="nav-item menu-items">
                 <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
                     aria-controls="ui-basic">
                     <span class="menu-icon">
@@ -33,7 +33,7 @@
                 <div class="collapse menu-second" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item">
-                            <a class="nav-link sub-navLink df-between" href="?action=listUser">Danh sách khách
+                            <a class="nav-link sub-navLink df-between" href="?action=listUser&cate=user">Danh sách khách
                                 hàng
                                 <span class="show-icon--submenu">
                                     <i class="mdi mdi-cube-outline position-icon"> </i>
@@ -41,7 +41,7 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link df-between sub-navLink" href="?action=addUser">Thêm khách hàng
+                            <a class="nav-link df-between sub-navLink" href="?action=addUser&cate=user">Thêm khách hàng
                                 mới
                                 <span class="show-icon--submenu">
                                     <i class="mdi mdi-cube-outline position-icon">

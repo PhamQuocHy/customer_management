@@ -20901,13 +20901,14 @@ div.tagsinput {
       font-size: 1.5rem;
       line-height: 48px;
       margin-right: 0;
-      padding: 0rem 0rem 0rem 1.3rem;
+      text-align: center;
+      /* padding: 0rem 0rem 0rem 1.3rem; */
       width: 100%; }
       .sidebar .sidebar-brand-wrapper .sidebar-brand:active, .sidebar .sidebar-brand-wrapper .sidebar-brand:focus, .sidebar .sidebar-brand-wrapper .sidebar-brand:hover {
         color: #252b3e; }
       .sidebar .sidebar-brand-wrapper .sidebar-brand img {
         /* width: calc(244px - 120px); */
-        width: 130px;
+        width: 170px;
         object-fit: cover;
         max-width: 100%;
         /* height: 28px; */

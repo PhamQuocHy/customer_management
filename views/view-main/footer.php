@@ -15,6 +15,7 @@
 <script src="assets/js/misc.js"></script>
 <script src="assets/js/settings.js"></script>
 <script src="assets/js/todolist.js"></script>
+<script src="assets/js/sitebar.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page -->
 <script src="assets/js/dashboard.js"></script>
