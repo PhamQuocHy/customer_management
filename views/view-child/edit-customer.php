@@ -37,6 +37,18 @@ $customer = $stmt->fetch();
                       value="<?php echo $customer['id_customer']; ?>">
                     <input required class="ctrl-input" hidden type="text" id="id" value="<?php echo $customer['id'] ?>">
                   </div>
+
+                  <div class="input-group">
+                    <label class="label-input" for="admin_login">Tài khoản Admin:</label>
+                    <input required class="ctrl-input " type="text" id="admin_login" name="admin_login"
+                      value="<?php echo $customer['admin_login']; ?>">
+                  </div>
+
+                  <div class="input-group">
+                    <label class="label-input" for="password_admin">Mật khẩu Admin:</label>
+                    <input required class="ctrl-input " type="text" id="password_admin" name="password_admin"
+                      value="<?php echo $customer['password_admin']; ?>">
+                  </div>
                 </div>
 
                 <div class="col-6 from-mn-warpper mb-20">
@@ -85,18 +97,6 @@ $customer = $stmt->fetch();
                     <label class="label-input" for="password_user">Mật khẩu khách hàng:</label>
                     <input required class="ctrl-input " type="text" id="password_user" name="password_user"
                       value="<?php echo $customer['password_user']; ?>">
-                  </div>
-
-                  <div class="input-group">
-                    <label class="label-input" for="admin_login">Tài khoản Admin:</label>
-                    <input required class="ctrl-input " type="text" id="admin_login" name="admin_login"
-                      value="<?php echo $customer['admin_login']; ?>">
-                  </div>
-
-                  <div class="input-group">
-                    <label class="label-input" for="password_admin">Mật khẩu Admin:</label>
-                    <input required class="ctrl-input " type="text" id="password_admin" name="password_admin"
-                      value="<?php echo $customer['password_admin']; ?>">
                   </div>
 
                   <div class="input-group">
@@ -159,7 +159,6 @@ $customer = $stmt->fetch();
 <!-- <div class="container">
 
 
-<<<<<<< HEAD
   <table>
     <thead>
       <tr>
@@ -281,7 +280,3 @@ $customer = $stmt->fetch();
     });
   });
 </script>
-=======
-
-</html>
->>>>>>> c61814ab69562c6b0d7130a2d0278e455e01c1e0

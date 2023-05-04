@@ -31,7 +31,7 @@ $customers = $stmt->fetchAll();
                   <th>ID lớn nhất</th>
                   <th>Ngày bắt đầu</th>
                   <th>Ngày kết thúc</th>
-                  <th></th>
+                  <th>Thao tác</th>
                 </tr>
               </thead>
               <tbody>
@@ -88,6 +88,11 @@ $customers = $stmt->fetchAll();
                     <td>
                       <button class="btn btn-primary btn-delete" data-id="<?php echo $customer['id']; ?>">Xóa</button>
                       <a href="?action=editUser&id=<?php echo $customer['id'] ?>" class="btn btn-primary btn-edit">Sửa</a>
+                    </td>
+                    <td>
+                      <a href="?action=view&id=<?php echo $customer['id'] ?>" class="btn">
+                        <i class="mdi mdi-eye-outline btn btn-primary"></i>
+                      </a>
                     </td>
 
                   </tr>
