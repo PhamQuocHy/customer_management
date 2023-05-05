@@ -20,21 +20,21 @@ $customer = $stmt->fetch();
                     <h6 class="card-title">Thông tin AMEWEB</h6>
                   </div>
                   <div class="input-group">
-                    <label class="label-input" for="id_customer">ID Host:</label>
+                    <label class="label-input" for="id_customer">IP Hosting:</label>
                     <span class="ctrl-input ctrl-input__span" type="text" id="id">
-                      <?php echo $customer['id'] ?>
+                      <?php echo $customer['ip_hosting'] ?>
                     </span>
                   </div>
                   <div class="input-group">
                     <label class="label-input" for="id_customer">User Host:</label>
                     <span class="ctrl-input ctrl-input__span" type="text" id="id">
-                      <?php echo $customer['id'] ?>
+                      <?php echo $customer['user_hosting'] ?>
                     </span>
                   </div>
                   <div class="input-group">
                     <label class="label-input" for="id_customer">Password Host:</label>
                     <span class="ctrl-input ctrl-input__span " type="text" id="id_customer" name="id_customer">
-                      <?php echo $customer['id_customer']; ?>
+                      <?php echo $customer['pass_hosting']; ?>
                     </span>
                   </div>
 
@@ -69,6 +69,13 @@ $customer = $stmt->fetch();
                     <label class="label-input" for="company_name">Tên công ty:</label>
                     <span class="ctrl-input ctrl-input__span " type="text" id="company_name" name="company_name">
                       <?php echo $customer['company_name']; ?>
+                    </span>
+                  </div>
+
+                  <div class="input-group">
+                    <label class="label-input" for="company_name">Mã số thuế:</label>
+                    <span class="ctrl-input ctrl-input__span " type="text" id="company_name" name="company_name">
+                      <?php echo $customer['mst']; ?>
                     </span>
                   </div>
 
