@@ -43,6 +43,12 @@ try {
                     case 'editGreat':
                         require_once './views/view-great/edit-great.php';
                         break;
+                    case 'addGreat':
+                        require_once './views/view-great/great.php';
+                        break;
+                    case 'viewGreat':
+                        require_once './views/view-great/great.php';
+                        break;
 
                     default:
                         require_once './views/view-child/list_customer.php';

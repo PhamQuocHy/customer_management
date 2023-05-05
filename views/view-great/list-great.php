@@ -44,7 +44,8 @@ $greats = $stmt->fetchAll();
                         class="btn btn-primary btn-edit">Sửa</a>
                     </td>
                     <td>
-                      <a href="?action=viewUser&idGreat=<?php echo $great['id_great']; ?>" class="btn btn-primary">
+                      <a href="?action=viewGreat&idGreat=<?php echo $great['id_great']; ?>&cate=great"
+                        class="btn btn-primary">
                         <i style="margin: 0;" class="mdi mdi-eye-outline position-icon"></i>
                       </a>
                     </td>

@@ -78,7 +78,8 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link df-between sub-navLink" href="?action=addUser&cate=user">Thêm ưu đãi mới
+                            <a class="nav-link df-between sub-navLink" href="?action=addGreat&cate=great">Thêm ưu đãi
+                                mới
                                 <span class="show-icon--submenu">
                                     <!-- <i class="mdi mdi-cube-outline position-icon"> </i> -->
                                     <img src="./assets/images/file-icons/logoIcon/logo.png"
