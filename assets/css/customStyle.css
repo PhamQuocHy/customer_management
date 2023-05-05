@@ -14,6 +14,10 @@
     color: inherit;
 }
 
+.label-top {
+    align-self: flex-start;
+}
+
 .btn:hover {
     opacity: 0.8;
 }
@@ -28,6 +32,10 @@
 
 .mb-20 {
     margin-bottom: 20px;
+}
+
+.mt-30 {
+    margin-top: 30px !important;
 }
 
 .px-20 {
@@ -145,4 +153,8 @@
 .btn-form {
     padding: 10px 20px;
     background-color: var(--primary-color);
+}
+
+.form-flex--wrapper {
+
 }

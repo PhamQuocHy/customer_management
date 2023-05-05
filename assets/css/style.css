@@ -21155,8 +21155,16 @@ div.tagsinput {
     }
 
     .show-icon--submenu {
+      position: absolute;
+      left: -18px;
+      top: 5px;
       display: none;
     }
+
+    .logo-icon {
+      width: 14px;
+    }
+
     .sidebar .nav.sub-menu {
       margin-bottom: 0;
       margin-top: 0;
@@ -21171,6 +21179,7 @@ div.tagsinput {
           font-size: 0.855rem;
           line-height: 1;
           height: auto;
+          position: relative;
           border-top: 0; }
           .sidebar .nav.sub-menu .nav-item .nav-link.active {
             color: #ffffff;

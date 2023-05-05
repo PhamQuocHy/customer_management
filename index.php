@@ -37,6 +37,12 @@ try {
                     case 'viewUser':
                         require_once './views/view-child/view-customer.php';
                         break;
+                    case 'listGreat':
+                        require_once './views/view-great/list-great.php';
+                        break;
+                    case 'editGreat':
+                        require_once './views/view-great/edit-great.php';
+                        break;
 
                     default:
                         require_once './views/view-child/list_customer.php';

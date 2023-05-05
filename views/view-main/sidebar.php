@@ -33,10 +33,13 @@
                 <div class="collapse menu-second" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item">
-                            <a class="nav-link sub-navLink df-between" href="?action=listUser&cate=user">Danh sách khách
+                            <a class="nav-link sub-navLink df-between" href="?action=listUser&cate=user">
+                                Danh sách khách
                                 hàng
                                 <span class="show-icon--submenu">
-                                    <i class="mdi mdi-cube-outline position-icon"> </i>
+                                    <!-- <i class="mdi mdi-cube-outline position-icon"> </i> -->
+                                    <img src="./assets/images/file-icons/logoIcon/logo.png"
+                                        class="position-icon logo-icon" alt="">
                                 </span>
                             </a>
                         </li>
@@ -44,19 +47,47 @@
                             <a class="nav-link df-between sub-navLink" href="?action=addUser&cate=user">Thêm khách hàng
                                 mới
                                 <span class="show-icon--submenu">
-                                    <i class="mdi mdi-cube-outline position-icon">
-                                    </i> </span></a>
+                                    <!-- <i class="mdi mdi-cube-outline position-icon"> </i> -->
+                                    <img src="./assets/images/file-icons/logoIcon/logo.png"
+                                        class="position-icon logo-icon" alt="">
+                                </span>
+                            </a>
                         </li>
                     </ul>
                 </div>
             </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="pages/forms/basic_elements.html">
+            <li id="cateUser" class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#greatItem" aria-expanded="false"
+                    aria-controls="greatItem">
                     <span class="menu-icon">
-                        <i class="mdi mdi-playlist-play"></i>
+                        <i class="mdi mdi-gift-outline"></i>
                     </span>
-                    <span class="menu-title">Form Elements</span>
+                    <span class="menu-title">Ưu đãi</span>
+                    <i class="menu-arrow"></i>
                 </a>
+                <div class="collapse menu-second" id="greatItem">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link sub-navLink df-between" href="?action=listGreat&cate=great">
+                                Danh sách ưu đãi
+                                <span class="show-icon--submenu">
+                                    <!-- <i class="mdi mdi-cube-outline position-icon"> </i> -->
+                                    <img src="./assets/images/file-icons/logoIcon/logo.png"
+                                        class="position-icon logo-icon" alt="">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link df-between sub-navLink" href="?action=addUser&cate=user">Thêm ưu đãi mới
+                                <span class="show-icon--submenu">
+                                    <!-- <i class="mdi mdi-cube-outline position-icon"> </i> -->
+                                    <img src="./assets/images/file-icons/logoIcon/logo.png"
+                                        class="position-icon logo-icon" alt="">
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li class="nav-item menu-items">
                 <a class="nav-link" href="pages/tables/basic-table.html">
