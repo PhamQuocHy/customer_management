@@ -1,9 +1,20 @@
 <?php
 require_once './dao/pdo.php';
-$stmt = $pdo->prepare('SELECT * FROM customer');
+
+$searchKeyword = isset($_GET['search_keyword']) ? $_GET['search_keyword'] : '';
+
+// Thực hiện truy vấn với điều kiện tìm kiếm nếu có từ khóa
+$sql = 'SELECT * FROM customer';
+if (!empty($searchKeyword)) {
+  $sql .= " WHERE id_customer LIKE '%$searchKeyword%' OR company_name LIKE '%$searchKeyword%'";
+}
+
+$stmt = $pdo->prepare($sql);
 $stmt->execute();
 $customers = $stmt->fetchAll();
 ?>
+
+
 
 <div class="content-wrapper">
   <div class="row">
@@ -11,6 +22,36 @@ $customers = $stmt->fetchAll();
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Danh sách khách hàng</h4>
+          <form method="GET" action="" class="search-wrapper">
+            <div class="form-group">
+              <label for="search-keyword">Tìm kiếm</label>
+              <input type="text" class="form-control search-input" id="search-keyword" name="search_keyword" placeholder="Nhập từ khóa tìm kiếm" value="<?php echo $searchKeyword ?>">
+
+              <!-- Thêm sự kiện JS để gửi request mới khi người dùng nhập hoặc xoá ký tự -->
+              <script>
+                var typingTimer;
+                var doneTypingInterval = 500; // Sau 500ms sẽ gửi request
+                var searchKeywordInput = $('#search-keyword');
+
+                searchKeywordInput.on('keyup', function () {
+                  clearTimeout(typingTimer);
+                  typingTimer = setTimeout(doneTyping, doneTypingInterval);
+                });
+
+                searchKeywordInput.on('keydown', function () {
+                  clearTimeout(typingTimer);
+                });
+
+                function doneTyping() {
+                  var searchKeyword = searchKeywordInput.val();
+                  var url = window.location.href.split('?')[0];
+                  var queryString = 'search_keyword=' + searchKeyword;
+                  window.location.href = url + '?' + queryString;
+                }
+              </script>
+            </div>
+            <button type="submit" class="btn btn-primary search-btn">Tìm kiếm</button>
+          </form>
           <div class="table-responsive">
             <table class="table">
               <thead>
