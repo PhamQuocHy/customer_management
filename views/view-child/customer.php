@@ -15,23 +15,23 @@ require_once './dao/pdo.php';
               <div class="row">
                 <div class="col-6 from-mn-warpper mb-20">
                   <div>
-                    <h6 class="card-title">Thông tin AMEWEB</h6>
+                    <h6 class="card-title">Thông tin AME WEB</h6>
                   </div>
                   <div class="input-group">
-                    <label class="label-input" for="id_host">ID Host: </label>
-                    <input class="ctrl-input" type="text" id="id_host" name="id_host"><br><br>
+                    <label class="label-input" for="ip_hosting">IP Host: </label>
+                    <input class="ctrl-input" type="text" id="ip_hosting" name="ip_hosting"><br><br>
                   </div>
                   <div class="input-group">
-                    <label class="label-input" for="user_host">User Host:</label>
-                    <input class="ctrl-input" type="text" id="user_host" name="user_host"><br><br>
+                    <label class="label-input" for="user_hosting">User Host:</label>
+                    <input class="ctrl-input" type="text" id="user_hosting" name="user_hosting"><br><br>
+                  </div>
+                  <div class="input-group">
+                    <label class="label-input" for="pass_hosting">Password Host:</label>
+                    <input class="ctrl-input" type="text" id="pass_hosting" name="pass_hosting"><br><br>
                   </div>
                   <div class="input-group">
                     <label class="label-input" for="admin_login">Tài khoản Admin:</label>
                     <input class="ctrl-input" type="text" id="admin_login" name="admin_login"><br><br>
-                  </div>
-                  <div class="input-group">
-                    <label class="label-input" for="password_host">Password Host:</label>
-                    <input class="ctrl-input" type="text" id="password_host" name="password_host"><br><br>
                   </div>
                   <div class="input-group">
                     <label class="label-input" for="password_admin">Mật khẩu admin:</label>
@@ -51,6 +51,11 @@ require_once './dao/pdo.php';
                   <div class="input-group">
                     <label class="label-input" for="company_name">Tên công ty:</label>
                     <input class="ctrl-input" type="text" id="company_name" name="company_name"><br><br>
+                  </div>
+
+                  <div class="input-group">
+                    <label class="label-input" for="mst">Mã số thuế:</label>
+                    <input class="ctrl-input" type="text" id="mst" name="mst"><br><br>
                   </div>
 
                   <div class="input-group">

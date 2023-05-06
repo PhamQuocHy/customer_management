@@ -68,7 +68,7 @@ try {
 
                 }
             } else {
-                require_once './views/view-child/delete_customer.php';
+                require_once './views/view-child/list_customer.php';
             }
             ?>
 

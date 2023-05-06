@@ -11,8 +11,12 @@ $customers = $stmt->fetchAll();
 //thêm mới 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Nhận dữ liệu từ form
+  $ip_hosting = $_POST['ip_hosting'];
+  $user_hosting = $_POST['user_hosting'];
+  $pass_hosting = $_POST['pass_hosting'];
   $id_customer = $_POST['id_customer'];
   $company_name = $_POST['company_name'];
+  $mst = $_POST['mst'];
   $customer_name = $_POST['customer_name'];
   $phone = $_POST['phone'];
   $id_service = $_POST['id_service'];
@@ -29,8 +33,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // Thêm khách hàng mới vào cơ sở dữ liệu
   try {
-    $stmt = $pdo->prepare('INSERT INTO customer (id_customer, company_name, customer_name, phone, id_service, customer_login, password_user, admin_login, password_admin, customer_mail, customer_link, status, id_great, date_start, date_end) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-    $stmt->execute([$id_customer, $company_name, $customer_name, $phone, $id_service, $customer_login, $password_user, $admin_login, $password_admin, $customer_mail, $customer_link, $status, $id_great, $date_start, $date_end]);
+  $stmt = $pdo->prepare('INSERT INTO customer (ip_hosting, user_hosting, pass_hosting, id_customer, company_name, mst, customer_name, phone, id_service, customer_login, password_user, admin_login, password_admin, customer_mail, customer_link, status, id_great, date_start, date_end) VALUES (:ip_hosting, :user_hosting, :pass_hosting, :id_customer, :company_name, :mst, :customer_name, :phone, :id_service, :customer_login, :password_user, :admin_login, :password_admin, :customer_mail, :customer_link, :status, :id_great, :date_start, :date_end)');
+  $stmt->bindValue(':ip_hosting', $ip_hosting);
+  $stmt->bindValue(':user_hosting', $user_hosting);
+  $stmt->bindValue(':pass_hosting', $pass_hosting);
+  $stmt->bindValue(':id_customer', $id_customer);
+  $stmt->bindValue(':company_name', $company_name);
+  $stmt->bindValue(':mst', $mst);
+  $stmt->bindValue(':customer_name', $customer_name);
+  $stmt->bindValue(':phone', $phone);
+  $stmt->bindValue(':id_service', $id_service);
+  $stmt->bindValue(':customer_login', $customer_login);
+  $stmt->bindValue(':password_user', $password_user);
+  $stmt->bindValue(':admin_login', $admin_login);
+  $stmt->bindValue(':password_admin', $password_admin);
+  $stmt->bindValue(':customer_mail', $customer_mail);
+  $stmt->bindValue(':customer_link', $customer_link);
+  $stmt->bindValue(':status', $status);
+  $stmt->bindValue(':id_great', $id_great);
+  $stmt->bindValue(':date_start', $date_start);
+  $stmt->bindValue(':date_end', $date_end);
+
+  $stmt->execute();
+
   } catch (PDOException $e) {
     echo 'Error: ' . $e->getMessage();
     die();
