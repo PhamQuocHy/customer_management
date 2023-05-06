@@ -7,6 +7,21 @@
     color: var(--text-color);
 }
 
+.wrapp {
+    white-space: unset !important;
+}
+
+.clamp-line {
+    line-height: 1.6rem;
+    max-height: 3.2rem;
+    margin-bottom: 6px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    --webkit-user-select: none;
+}
+
 .btn {
     border: none;
     padding: 6px 10px;

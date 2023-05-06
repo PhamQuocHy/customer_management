@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.carousel.min.css" />
     <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.theme.default.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->

@@ -11,7 +11,7 @@ $greats = $stmt->fetchAll();
     <div class="col-12 grid-margin">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Danh sách khách hàng</h4>
+          <h4 class="card-title">Danh sách gói ưu đãi</h4>
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -19,7 +19,7 @@ $greats = $stmt->fetchAll();
                   <th>ID</th>
                   <th>Mã ưu đãi</th>
                   <th>Tên ưu đãi</th>
-                  <th>Ghi chú ưu đãi</th>
+                  <th>Nội dung gói ưu đãi ưu đãi</th>
                   <th>Thao tác</th>
                 </tr>
               </thead>
@@ -35,8 +35,10 @@ $greats = $stmt->fetchAll();
                     <td>
                       <?php echo $great['great_name']; ?>
                     </td>
-                    <td>
-                      <?php echo $great['great_content']; ?>
+                    <td class="wrapp">
+                      <span class="clamp-line">
+                        <?php echo $great['great_content']; ?>
+                      </span>
                     </td>
                     <td>
                       <button class="btn btn-primary btn-delete" data-id="<?php echo $great['id_great']; ?>">Xóa</button>
