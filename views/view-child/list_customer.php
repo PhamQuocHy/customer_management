@@ -29,26 +29,30 @@ $customers = $stmt->fetchAll();
 
               <!-- Thêm sự kiện JS để gửi request mới khi người dùng nhập hoặc xoá ký tự -->
               <script>
-                var typingTimer;
-                var doneTypingInterval = 500; // Sau 500ms sẽ gửi request
-                var searchKeywordInput = $('#search-keyword');
+              var typingTimer;
+              var doneTypingInterval = 500; // Sau 500ms sẽ gửi request
+              var searchKeywordInput = $('#search-keyword');
 
-                searchKeywordInput.on('keyup', function () {
-                  clearTimeout(typingTimer);
-                  typingTimer = setTimeout(doneTyping, doneTypingInterval);
-                });
+              searchKeywordInput.on('keyup', function () {
+                clearTimeout(typingTimer);
+                typingTimer = setTimeout(doneTyping, doneTypingInterval);
+              });
 
-                searchKeywordInput.on('keydown', function () {
-                  clearTimeout(typingTimer);
-                });
+              searchKeywordInput.on('keydown', function () {
+                clearTimeout(typingTimer);
+              });
 
-                function doneTyping() {
-                  var searchKeyword = searchKeywordInput.val();
-                  var url = window.location.href.split('?')[0];
-                  var queryString = 'search_keyword=' + searchKeyword;
-                  window.location.href = url + '?' + queryString;
-                }
-              </script>
+              // Thêm sự kiện focusout đối với ô tìm kiếm
+              searchKeywordInput.on('focusout', doneTyping);
+
+              function doneTyping() {
+                var searchKeyword = searchKeywordInput.val();
+                var url = window.location.href.split('?')[0];
+                var queryString = 'search_keyword=' + searchKeyword;
+                window.location.href = url + '?' + queryString;
+              }
+            </script>
+
             </div>
             <button type="submit" class="btn btn-primary search-btn">Tìm kiếm</button>
           </form>
