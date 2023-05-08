@@ -25,7 +25,8 @@ $customers = $stmt->fetchAll();
           <form method="GET" action="" class="search-wrapper">
             <div class="form-group">
               <label for="search-keyword">Tìm kiếm</label>
-              <input type="text" class="form-control search-input" id="search-keyword" name="search_keyword" placeholder="Nhập từ khóa tìm kiếm" value="<?php echo $searchKeyword ?>">
+              <input type="text" class="form-control search-input" id="search-keyword" name="search_keyword"
+                placeholder="Nhập tên công ty hoặc ID khách hàng" value="<?php echo $searchKeyword ?>">
 
               <!-- Thêm sự kiện JS để gửi request mới khi người dùng nhập hoặc xoá ký tự -->
               <script>
@@ -47,6 +48,7 @@ $customers = $stmt->fetchAll();
                   var url = window.location.href.split('?')[0];
                   var queryString = 'search_keyword=' + searchKeyword;
                   window.location.href = url + '?' + queryString;
+                  searchKeywordInput.focus();
                 }
               </script>
             </div>

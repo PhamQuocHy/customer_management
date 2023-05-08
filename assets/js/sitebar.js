@@ -49,5 +49,10 @@ const activeSitebar = () => {
       }
     }
   }
+
+  if (actionQuery == "dashboard") {
+    const navItem = document.querySelector("#dashboard");
+    navItem.classList.add("active");
+  }
 };
 activeSitebar();

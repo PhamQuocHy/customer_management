@@ -22,6 +22,17 @@
     --webkit-user-select: none;
 }
 
+.clamp-line-1 {
+    line-height: 1.6rem;
+    max-height: 1.6rem;
+    /* margin-bottom: 6px; */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    --webkit-user-select: none;
+}
+
 .btn {
     border: none;
     padding: 6px 10px;
