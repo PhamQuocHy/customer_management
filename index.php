@@ -47,7 +47,19 @@ try {
                         require_once './views/view-great/great.php';
                         break;
                     case 'viewGreat':
-                        require_once './views/view-great/great.php';
+                        require_once './views/view-great/view-great.php';
+                        break;
+                    case 'listService':
+                        require_once './views/view-service/list-service.php';
+                        break;
+                    case 'editService':
+                        require_once './views/view-service/edit-service.php';
+                        break;
+                    case 'addService':
+                        require_once './views/view-service/service.php';
+                        break;
+                    case 'dashboard':
+                        require_once './views/view-dashboard/dashboard.php';
                         break;
 
                     default:

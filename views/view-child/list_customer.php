@@ -25,7 +25,8 @@ $customers = $stmt->fetchAll();
           <form method="GET" action="" class="search-wrapper">
             <div class="form-group">
               <label for="search-keyword">Tìm kiếm</label>
-              <input type="text" class="form-control search-input" id="search-keyword" name="search_keyword" placeholder="Nhập từ khóa tìm kiếm" value="<?php echo $searchKeyword ?>">
+              <input type="text" class="form-control search-input" id="search-keyword" name="search_keyword"
+                placeholder="Nhập tên công ty hoặc ID khách hàng" value="<?php echo $searchKeyword ?>">
 
               <!-- Thêm sự kiện JS để gửi request mới khi người dùng nhập hoặc xoá ký tự -->
               <script>
@@ -56,10 +57,15 @@ $customers = $stmt->fetchAll();
             </div>
             <button type="submit" class="btn btn-primary search-btn">Tìm kiếm</button>
           </form>
+
+          <div>
+            <button type="button" class="btn btn-primary mb-3" id="btn-delete-selected-customer">Xóa các khách hàng đã chọn</button> <!-- Thêm nút xóa được chọn -->
+          </div>
           <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
+                  <th><input type="checkbox" id="select-all"></th>
                   <th>ID</th>
                   <th>Mã Khách hàng</th>
                   <th>Tên công ty</th>
@@ -82,6 +88,9 @@ $customers = $stmt->fetchAll();
               <tbody>
                 <?php foreach ($customers as $customer): ?>
                   <tr>
+                    <td>
+                      <input type="checkbox" class="select-customer" value="<?php echo $customer['id']; ?>">
+                    </td>
                     <td>
                       <?php echo $customer['id']; ?>
                     </td>
@@ -171,4 +180,56 @@ $customers = $stmt->fetchAll();
       });
     }
   });
+
+  $(document).ready(function() {
+        // Chọn mọi checkbox nếu checkbox header được chọn
+        $('#select-all').click(function(event) {
+            if (this.checked) {
+                $('.select-customer').each(function() {
+                    this.checked = true;
+                });
+            } else {
+                $('.select-customer').each(function() {
+                    this.checked = false;
+                });
+            }
+        });
+
+        // Xóa các khách hàng được chọn
+        $('#btn-delete-selected-customer').click(function() {
+            var customerIds = [];
+            $(".select-customer:checked").each(function() {
+                customerIds.push($(this).val());
+            });
+            if (customerIds.length > 0) {
+                if (confirm('Bạn có muốn xóa các khách hàng đã chọn?')) {
+                    $.ajax({
+                        url: './dao/delete-customer.php',
+                        type: 'post',
+                        data: {customerIds: customerIds},
+                        success:function(response) {
+                            if (response.result === 'success') {
+                                alert('Xóa các khách hàng đã chọn thành công!');
+                                location.reload();
+                            } else {
+                                alert('Không thể xóa khách hàng đã chọn!');
+                            }
+                        },
+                        error:function(error) {
+                            alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+                            console.log(error);
+                        }
+                    });
+                }
+            } else {
+                alert('Vui lòng chọn ít nhất một khách hàng để xóa!');
+            }
+        });
+    });
+
+  
 </script>
+
+
+
+  
