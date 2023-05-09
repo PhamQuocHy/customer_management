@@ -11,6 +11,14 @@
     white-space: unset !important;
 }
 
+.customer-day {
+    display: none;
+}
+
+.customer-day.active {
+    display: table-row;
+}
+
 .clamp-line {
     line-height: 1.6rem;
     max-height: 3.2rem;
@@ -183,4 +191,34 @@
 
 .form-flex--wrapper {
 
+}
+
+/*  */
+
+.day-title {
+    cursor: pointer;
+}
+
+.day-title:hover {
+    opacity: 0.8;
+}
+
+.day-title.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.tbl-icon--box {
+    text-align: center;
+}
+
+.tbl-icon--box:hover {
+    opacity: 0.8;
+    cursor: pointer;
+
+}
+
+.icon-tbl {
+    margin: 0 !important;
+    display: block;
 }

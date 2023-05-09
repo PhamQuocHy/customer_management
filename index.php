@@ -63,12 +63,14 @@ try {
                         break;
 
                     default:
-                        require_once './views/view-child/list_customer.php';
-                        break;
-
+                        return header("Location: ?action=dashboard");
+                    // break;
+            
                 }
             } else {
-                require_once './views/view-child/list_customer.php';
+                // require_once './views/view-child/list_customer.php';
+                return header("Location: ?action=dashboard");
+
             }
             ?>
 
