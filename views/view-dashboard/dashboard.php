@@ -26,21 +26,38 @@ $curentDay = date("Y-m-d");
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
-                                    <tr>
-                                        <?php for ($i = 0; $i < 7; $i++) {
-                                            $nextDay = date("d", strtotime($curentDay . " +$i day"));
-                                            ?>
-                                            <th>
-                                                <?php echo $nextDay ?>
-                                            </th>
-                                            <?php
-                                        } ?>
+                                    <tr id="day-title-box">
+                                        <th class="tbl-icon--box__th">
+                                            <div class="tbl-icon--box">
+                                                <i class="mdi mdi-arrow-left position-icon icon-tbl"></i>
+                                            </div>
+                                        </th>
+                                        <!-- <div>
+                                            <?php for ($i = 0; $i < 7; $i++) {
+                                                $nextDay = date("d", strtotime($curentDay . " +$i day"));
+                                                $nextYMD = date("Y-m-d", strtotime($curentDay . " +$i day"));
+                                                ?>
+                                                <th class="day-title <?php if ($i == 0)
+                                                    echo 'active' ?>" data-id="<?= $nextYMD ?>">
+                                                    <span>
+                                                        Ngày
+                                                        <?php echo $nextDay ?>
+                                                    </span>
+                                                </th>
+                                                <?php
+                                            } ?>
+                                        </div> -->
+                                        <th class="tbl-icon--box__th">
+                                            <div class="tbl-icon--box">
+                                                <i class="mdi mdi-arrow-right position-icon icon-tbl"></i>
+                                            </div>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                     <?php
-                                    for ($i = 0; $i < 7; $i++) {
+                                    for ($i = 0; $i < 30; $i++) {
                                         $nextDay = date("Y-m-d", strtotime($curentDay . " +$i day"));
                                         foreach ($customers as $key => $customer) {
                                             $expiration_date = $customer['date_end'];
@@ -49,20 +66,18 @@ $curentDay = date("Y-m-d");
                                                 $expiry_date = date_create_from_format('Y-m-d', $expiration_date);
 
                                                 // Ngày hiện tại
-                                                // $current_date = new DateTime();
                                                 $nextDayObj = date_create_from_format('Y-m-d', $nextDay);
 
                                                 // Tính số ngày còn lại cho đến ngày hết hạn
                                                 $days_left = $expiry_date->diff($nextDayObj)->days;
                                                 if ($days_left == 0) {
                                                     ?>
-                                                    <tr id="day-<?php echo $nextDay ?>">
-                                                        <td>
-                                                            <?php echo $nextDay ?>
+                                                    <tr class="customer-day" data-Item="<?= $expiration_date ?>">
+                                                        <td></td>
+                                                        <td colspan="7">
+                                                            <?php echo $customer['company_name'] ?>
                                                         </td>
-                                                        <td>
-                                                            <?php echo $expiration_date ?>
-                                                        </td>
+                                                        <td></td>
                                                     </tr>
                                                     <?php
                                                 }
