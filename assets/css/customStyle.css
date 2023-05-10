@@ -223,3 +223,9 @@
     margin: 0 !important;
     display: block;
 }
+
+.link_tbl {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
