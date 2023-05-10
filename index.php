@@ -64,13 +64,13 @@ try {
 
                     default:
                         return header("Location: ?action=dashboard");
-                    // break;
-            
+
                 }
             } else {
                 // require_once './views/view-child/list_customer.php';
                 return header("Location: ./views/view-account/login.php");
-
+                // exit();
+            
             }
             ?>
 
