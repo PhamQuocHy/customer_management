@@ -27,7 +27,7 @@ $curentDay = date("Y-m-d");
                             <table class="table">
                                 <thead>
                                     <tr id="day-title-box">
-                                        <th class="tbl-icon--box__th">
+                                        <th id="min-day--btn" class="tbl-icon--box__th">
                                             <div class="tbl-icon--box">
                                                 <i class="mdi mdi-arrow-left position-icon icon-tbl"></i>
                                             </div>
@@ -48,7 +48,7 @@ $curentDay = date("Y-m-d");
                                             } ?>
                                         </div> -->
                                         <th class="tbl-icon--box__th">
-                                            <div class="tbl-icon--box">
+                                            <div id="max-day--btn" class="tbl-icon--box">
                                                 <i class="mdi mdi-arrow-right position-icon icon-tbl"></i>
                                             </div>
                                         </th>
@@ -57,33 +57,23 @@ $curentDay = date("Y-m-d");
                                 <tbody>
 
                                     <?php
-                                    for ($i = 0; $i < 30; $i++) {
-                                        $nextDay = date("Y-m-d", strtotime($curentDay . " +$i day"));
-                                        foreach ($customers as $key => $customer) {
-                                            $expiration_date = $customer['date_end'];
-                                            $flash = 'false';
-                                            if ($expiration_date != null) {
-                                                $expiry_date = date_create_from_format('Y-m-d', $expiration_date);
 
-                                                // Ngày hiện tại
-                                                $nextDayObj = date_create_from_format('Y-m-d', $nextDay);
-
-                                                // Tính số ngày còn lại cho đến ngày hết hạn
-                                                $days_left = $expiry_date->diff($nextDayObj)->days;
-                                                if ($days_left == 0) {
-                                                    ?>
-                                                    <tr class="customer-day" data-Item="<?= $expiration_date ?>">
-                                                        <td></td>
-                                                        <td colspan="7">
-                                                            <?php echo $customer['company_name'] ?>
-                                                        </td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                            }
+                                    foreach ($customers as $key => $customer) {
+                                        $expiration_date = $customer['date_end'];
+                                        if ($expiration_date != null) {
+                                            ?>
+                                            <tr class="customer-day" data-Item="<?= $expiration_date ?>">
+                                                <td></td>
+                                                <td colspan="7">
+                                                    <?php echo $customer['company_name'] ?>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                            <?php
                                         }
                                     }
+
+
                                     ?>
                                 </tbody>
                             </table>

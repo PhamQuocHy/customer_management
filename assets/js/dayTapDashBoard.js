@@ -1,36 +1,106 @@
 const handleTapDashBoard = () => {
-  const currentDate = new Date();
-  const nextWeek = new Date();
   const optionsFullYear = { day: "numeric", month: "numeric", year: "numeric" };
   const optionsNotYear = { day: "numeric", month: "numeric" };
-  let currentNumDays = 0;
+
   const titleDayBox = document.querySelector("#day-title-box");
   const titleDayArrow = titleDayBox.querySelector("th:first-child");
 
-  const insertTitleDay = () => {
-    for (let j = 6; j >= 0; j--) {
-      nextWeek.setDate(currentDate.getDate() + j);
-      const formattedDateNotYear = nextWeek.toLocaleDateString(
-        "vi-VN",
-        optionsNotYear
-      );
-      const formattedDateFullYear = nextWeek.toLocaleDateString(
-        "en-CA",
-        optionsFullYear
-      );
-      const thElement = document.createElement("th");
-      if (j == 0) {
-        thElement.classList.add("day-title", "active");
-      } else {
-        thElement.classList.add("day-title");
-      }
-      thElement.setAttribute("data-id", formattedDateFullYear);
-      const spanElement = document.createElement("span");
-      spanElement.innerHTML = `Ngày ${formattedDateNotYear}`;
-      thElement.appendChild(spanElement);
+  const handleClickArrow = () => {
+    // Min btn
+    const minDayBtn = document.querySelector("#min-day--btn");
+    const maxDayBtn = document.querySelector("#max-day--btn");
+    let currentNumDays = 6;
+    let oldNumDays = 0;
 
-      titleDayBox.insertBefore(thElement, titleDayArrow.nextSibling);
+    minDayBtn.addEventListener("click", function (e) {
+      if (currentNumDays > oldNumDays) {
+        currentNumDays = currentNumDays - 6;
+        oldNumDays = currentNumDays - 1;
+      }
+      oldNumDays = currentNumDays - 1;
+      currentNumDays = currentNumDays - 7;
+      insertTitleDay(currentNumDays, oldNumDays);
+      handleItemActive();
+    });
+    maxDayBtn.addEventListener("click", function (e) {
+      if (currentNumDays < oldNumDays) {
+        currentNumDays = currentNumDays + 6;
+        oldNumDays = currentNumDays - 1;
+      }
+      oldNumDays = currentNumDays + 1;
+      currentNumDays = currentNumDays + 7;
+      insertTitleDay(currentNumDays, oldNumDays);
+      handleItemActive();
+    });
+
+    insertTitleDay(currentNumDays, 0);
+  };
+
+  const insertTitleDay = (numDay, oldNumDay) => {
+    const currentDate = new Date();
+    const dayTitle = document.querySelectorAll(".day-title");
+    if (dayTitle) {
+      dayTitle.forEach(function (item) {
+        item.remove();
+      });
     }
+
+    if (numDay > oldNumDay) {
+      // const numdaysCurrent = numDay - 6;
+      for (let j = numDay; j >= oldNumDay; j--) {
+        let nextWeek = new Date(
+          currentDate.getTime() + j * 24 * 60 * 60 * 1000
+        );
+        const formattedDateNotYear = nextWeek.toLocaleDateString(
+          "vi-VN",
+          optionsNotYear
+        );
+        const formattedDateFullYear = nextWeek.toLocaleDateString(
+          "en-CA",
+          optionsFullYear
+        );
+        const thElement = document.createElement("th");
+        if (j == oldNumDay) {
+          thElement.classList.add("day-title", "active");
+        } else {
+          thElement.classList.add("day-title");
+        }
+        thElement.setAttribute("data-id", formattedDateFullYear);
+        const spanElement = document.createElement("span");
+        spanElement.innerHTML = `Ngày ${formattedDateNotYear}`;
+        thElement.appendChild(spanElement);
+
+        titleDayBox.insertBefore(thElement, titleDayArrow.nextSibling);
+      }
+    } else {
+      for (let j = oldNumDay; j >= numDay; j--) {
+        let nextWeek = new Date(
+          currentDate.getTime() + j * 24 * 60 * 60 * 1000
+        );
+        const formattedDateNotYear = nextWeek.toLocaleDateString(
+          "vi-VN",
+          optionsNotYear
+        );
+        const formattedDateFullYear = nextWeek.toLocaleDateString(
+          "en-CA",
+          optionsFullYear
+        );
+        const thElement = document.createElement("th");
+        if (j == numDay) {
+          thElement.classList.add("day-title", "active");
+        } else {
+          thElement.classList.add("day-title");
+        }
+        thElement.setAttribute("data-id", formattedDateFullYear);
+        const spanElement = document.createElement("span");
+        spanElement.innerHTML = `Ngày ${formattedDateNotYear}`;
+        thElement.appendChild(spanElement);
+
+        titleDayBox.insertBefore(thElement, titleDayArrow.nextSibling);
+      }
+    }
+
+    activeTapDay();
   };
 
   const activeTapDay = () => {
@@ -41,14 +111,20 @@ const handleTapDashBoard = () => {
         tapBtn[i].addEventListener("click", function (item) {
           const tapActive = document.querySelector(".day-title.active");
           const itemActive = document.querySelectorAll(".customer-day.active");
-          if (tapActive) {
-            tapActive.classList.remove("active");
-          }
           if (itemActive) {
             itemActive.forEach(function (item) {
               item.classList.remove("active");
             });
           }
+          //
+
+          // handleItemActive();
+
+          //
+          if (tapActive) {
+            tapActive.classList.remove("active");
+          }
+
           tapBtn[i].classList.add("active");
           const dataID = tapBtn[i].getAttribute("data-id");
           const dataTap = document.querySelectorAll(`[data-item="${dataID}"]`);
@@ -60,6 +136,12 @@ const handleTapDashBoard = () => {
         });
         if (flash) {
           const tapActive = document.querySelector(".day-title.active");
+          const itemActive = document.querySelectorAll(".customer-day.active");
+          if (itemActive) {
+            itemActive.forEach(function (item) {
+              item.classList.remove("active");
+            });
+          }
           if (tapActive) {
             const dataID = tapActive.getAttribute("data-id");
             const dataTap = document.querySelectorAll(
@@ -76,7 +158,28 @@ const handleTapDashBoard = () => {
       }
     }
   };
+
+  const handleItemActive = () => {
+    const itemActive = document.querySelectorAll(".customer-day.active");
+    const tapActive = document.querySelector(".day-title.active");
+    if (itemActive) {
+      itemActive.forEach(function (item) {
+        item.classList.remove("active");
+      });
+    }
+
+    if (tapActive) {
+      const dataID = tapActive.getAttribute("data-id");
+      const dataTap = document.querySelectorAll(`[data-item="${dataID}"]`);
+      if (dataTap) {
+        dataTap.forEach(function (item) {
+          item.classList.add("active");
+        });
+      }
+    }
+  };
   insertTitleDay();
   activeTapDay();
+  handleClickArrow();
 };
 handleTapDashBoard();
