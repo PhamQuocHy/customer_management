@@ -13,17 +13,16 @@ if (isset($_POST['login'])) {
     $stmt->execute(array(':user_login' => $user_login));
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && $password === $user['password']) {
-        // Lưu thông tin người dùng vào session và chuyển hướng đến trang chính
-        $_SESSION['user'] = $user;
-        $host = $_SERVER['HTTP_HOST'];
-        $path = '/AME/AME-AMIN-BE/?action=dashboard';
-        header("Location: http://$host$path");
-        exit();
-    } else {
-        // Thông báo lỗi đăng nhập không thành công
-        echo '<p style="color: red;">Tên đăng nhập hoặc mật khẩu không đúng.</p>';
-    }
+        if ($user && $password === $user['password']) {
+            // Lưu thông tin người dùng vào session và chuyển hướng đến trang chính
+            $_SESSION['user_login'] = $user_login;
+            header("Location: /ameweb_be/index.php?action=dashboard");
+
+            exit();
+        } else {
+            // Thông báo lỗi đăng nhập không thành công
+            echo '<p style="color: red;">Tên đăng nhập hoặc mật khẩu không đúng.</p>';
+        }
 
 }
 ?>

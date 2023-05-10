@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_login'])) {
+    header("Location: ./views/view-account/login.php");
+    exit();
+}
+
 ob_start();
 require_once 'dao/pdo.php';
 
@@ -11,8 +17,8 @@ try {
 ?>
 
 <?php require_once './views/view-main/header.php'; ?>
-
 <div class="container-scroller">
+
     <!-- partial:partials/_sidebar.html -->
     <?php require_once './views/view-main/sidebar.php'; ?>
     <!-- partial -->
@@ -64,8 +70,15 @@ try {
                     case 'dashboard':
                         require_once './views/view-dashboard/dashboard.php';
                         break;
-
                     default:
+<<<<<<< HEAD
+                        header("Location: ?action=dashboard");
+                        exit();
+                }
+            } else {
+                header("Location: ?action=dashboard");
+                exit();
+=======
                         return header("Location: ?action=dashboard");
 
                 }
@@ -74,6 +87,7 @@ try {
                 return header("Location: ./views/view-account/login.php");
                 // exit();
             
+>>>>>>> 85d49de0dd2cfc900246488400d48aa8a797e7fe
             }
             ?>
 
