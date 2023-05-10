@@ -125,6 +125,39 @@
                     </ul>
                 </div>
             </li>
+            <li id="cateService" class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#serviceItem" aria-expanded="false"
+                    aria-controls="serviceItem">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-animation"></i>
+                    </span>
+                    <span class="menu-title">Nhân viên</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse menu-second" id="serviceItem">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link sub-navLink df-between" href="?action=listService&cate=service">
+                                Danh sách Nhân viên
+                                <span class="show-icon--submenu">
+                                    <!-- <i class="mdi mdi-cube-outline position-icon"> </i> -->
+                                    <img src="./assets/images/file-icons/logoIcon/logo.png"
+                                        class="position-icon logo-icon" alt="">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link df-between sub-navLink" href="?action=addService&cate=service">Thêm nhân viên
+                                <span class="show-icon--submenu">
+                                    <!-- <i class="mdi mdi-cube-outline position-icon"> </i> -->
+                                    <img src="./assets/images/file-icons/logoIcon/logo.png"
+                                        class="position-icon logo-icon" alt="">
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
