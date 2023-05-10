@@ -8,19 +8,21 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
 
     // Kiểm tra thông tin đăng nhập có đúng không
-    $stmt = $pdo->prepare('SELECT * FROM user WHERE user_login = :user_login');
-    $stmt->execute(array(':user_login' => $user_login));
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Lấy thông tin người dùng từ CSDL dựa trên tên đăng nhập
+        $stmt = $pdo->prepare('SELECT * FROM user WHERE user_login = :user_login');
+        $stmt->execute(array(':user_login' => $user_login));
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user['password'])) {
-        // Lưu thông tin người dùng vào session và chuyển hướng đến trang chính
-        $_SESSION['user'] = $user;
-        header('Location: index.php');
-        exit();
-    } else {
-        // Thông báo lỗi đăng nhập không thành công
-        echo '<p style="color: red;">Tên đăng nhập hoặc mật khẩu không đúng.</p>';
-    }
+        if ($user && $password === $user['password']) {
+            // Lưu thông tin người dùng vào session và chuyển hướng đến trang chính
+            $_SESSION['user'] = $user;
+            header("Location: index.php/?action=dashboard");
+            exit();
+        } else {
+            // Thông báo lỗi đăng nhập không thành công
+            echo '<p style="color: red;">Tên đăng nhập hoặc mật khẩu không đúng.</p>';
+        }
+
 }
 ?>
 
@@ -28,21 +30,28 @@ if (isset($_POST['login'])) {
 <html>
 <head>
     <title>Đăng nhập</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Đăng nhập</h2>
-    <form action="login.php" method="post">
-        <div>
-            <label for="user_login">User login:</label>
-            <input type="text" id="user_login" name="user_login" required>
+    <div class="full">
+        <div class="img-div">
+            <img class="img" src="../../images/logo.png" alt="">
         </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+        <div class="login-form">
+        <form action="login.php" method="post">
+                <div>
+                    <label for="user_login">Tên đăng nhập:</label>
+                    <input type="text" id="user_login" name="user_login" required>
+                </div>
+                <div>
+                    <label for="password">Mật khẩu:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <input type="submit" name="login" value="Đăng nhập">
+                </div>
+            </form>
         </div>
-        <div>
-            <input type="submit" name="login" value="Đăng nhập">
-        </div>
-    </form>
+    </div>
 </body>
 </html>

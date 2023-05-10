@@ -226,10 +226,4 @@ $customers = $stmt->fetchAll();
             }
         });
     });
-
-  
 </script>
-
-
-
-  

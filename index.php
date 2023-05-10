@@ -69,7 +69,7 @@ try {
                 }
             } else {
                 // require_once './views/view-child/list_customer.php';
-                return header("Location: ?action=dashboard");
+                return header("Location: ./views/view-account/login.php");
 
             }
             ?>

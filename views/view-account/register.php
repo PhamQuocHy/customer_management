@@ -22,12 +22,13 @@ if (isset($_POST['register'])) {
     } else {
         // Nếu tên đăng nhập chưa tồn tại, tiến hành lưu thông tin người dùng vào CSDL
         $stmt = $pdo->prepare('INSERT INTO user (user_name, user_login, password, position) VALUES (:user_name, :user_login, :password, :position)');
-        $stmt->execute(array(
-            ':user_name' => $user_name,
-            ':user_login' => $user_login,
-            ':password' => password_hash($password, PASSWORD_DEFAULT),
-            ':position' => $position
-        ));
+            $stmt->execute(array(
+                ':user_name' => $user_name,
+                ':user_login' => $user_login,
+                ':password' => $password,
+                ':position' => $position
+            ));
+
         // Nếu truy vấn lưu dữ liệu không thành công, cập nhật biến hasError
         if ($stmt->rowCount() === 0) {
             $hasError = true;

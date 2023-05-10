@@ -1,0 +1,84 @@
+/* Style cho form đăng nhập */
+body {
+    background-color: #f1f1f1;
+    font-family: Arial, sans-serif;
+}
+.full{
+    padding-top: 100px;
+}
+.img-div{
+    display: flex;
+   justify-content: center;
+   padding-bottom: 20px;
+}
+.img{
+    width: 15%;
+}
+.login-form {
+    width: 350px;
+    margin: auto;
+    padding: 40px;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 1px solid rgb(206, 206, 206);
+    padding-right: 0px;
+}
+
+.login-form h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #21759b;
+    font-size: 24px;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 400;
+    font-size: 13.5px;
+    color: #333;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    display: block;
+    width: 83%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    border: none;
+    border: 1px solid rgb(206, 206, 206);
+}
+
+.login-form input[type="submit"] {
+    display: block;
+    width: 89.5%;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 3px;
+    background-color: #21759b;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login-form input[type="submit"]:hover {
+    background-color: #1d5d80;
+}
+
+.login-form .links {
+    margin-top: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.login-form .links a {
+    margin-left: 10px;
+    color: #21759b;
+    text-decoration: none;
+}
+
+.login-form .links a:hover {
+    text-decoration: underline;
+}
