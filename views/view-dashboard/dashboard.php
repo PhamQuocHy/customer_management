@@ -65,7 +65,10 @@ $curentDay = date("Y-m-d");
                                             <tr class="customer-day" data-Item="<?= $expiration_date ?>">
                                                 <td></td>
                                                 <td colspan="7">
-                                                    <?php echo $customer['company_name'] ?>
+                                                    <a href="?action=viewUser&id=<?php echo $customer['id'] ?>"
+                                                        class="link_tbl">
+                                                        <?php echo $customer['company_name'] ?>
+                                                    </a>
                                                 </td>
                                                 <td></td>
                                             </tr>

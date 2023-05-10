@@ -16,8 +16,9 @@ if (isset($_POST['login'])) {
     if ($user && $password === $user['password']) {
         // Lưu thông tin người dùng vào session và chuyển hướng đến trang chính
         $_SESSION['user'] = $user;
-        echo $_SERVER['HTTP_HOST'];
-        // header("Location: /action=dashboard");
+        $host = $_SERVER['HTTP_HOST'];
+        $path = '/AME/AME-AMIN-BE/?action=dashboard';
+        header("Location: http://$host$path");
         exit();
     } else {
         // Thông báo lỗi đăng nhập không thành công
