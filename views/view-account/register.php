@@ -67,8 +67,11 @@ if ($hasError) {
 			<input type="text" id="user_login" name="user_login" required>
 		</div>
 		<div>
-			<label for="position">Position:</label>
-			<input type="text" id="position" name="position" required>
+			<label for="position">Bạn là ai:</label>
+            <select required class="ctrl-input " type="text"  id="position" name="position">
+                      <option value="1">Nguyễn Phúc Trọng Nhân</option>
+                      <option value="2" selected>Nhân Viên</option>
+            </select>
 		</div>
 		
 		<div>
