@@ -21,6 +21,14 @@
                     <span class="menu-title">Thống kê</span>
                 </a>
             </li>
+            <li id="dashboard" class="nav-item menu-items">
+                <a class="nav-link" href="?action=dashboard">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-chart-bubble"></i>
+                    </span>
+                    <span class="menu-title">Thêm doanh thu</span>
+                </a>
+            </li>
             <li id="cateUser" class="nav-item menu-items">
                 <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
                     aria-controls="ui-basic">

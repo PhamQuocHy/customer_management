@@ -75,8 +75,6 @@ $curentDay = date("Y-m-d");
                                             <?php
                                         }
                                     }
-
-
                                     ?>
                                 </tbody>
                             </table>
