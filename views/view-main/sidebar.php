@@ -126,18 +126,18 @@
                 </div>
             </li>
             <li id="cateService" class="nav-item menu-items">
-                <a class="nav-link" data-toggle="collapse" href="#serviceItem" aria-expanded="false"
-                    aria-controls="serviceItem">
+                <a class="nav-link" data-toggle="collapse" href="#userItem" aria-expanded="false"
+                    aria-controls="userItem">
                     <span class="menu-icon">
                         <i class="mdi mdi-animation"></i>
                     </span>
                     <span class="menu-title">Nhân viên</span>
                     <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse menu-second" id="serviceItem">
+                <div class="collapse menu-second" id="userItem">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item">
-                            <a class="nav-link sub-navLink df-between" href="?action=listService&cate=service">
+                            <a class="nav-link sub-navLink df-between" href="?action=addCommer&cate=commer">
                                 Danh sách Nhân viên
                                 <span class="show-icon--submenu">
                                     <!-- <i class="mdi mdi-cube-outline position-icon"> </i> -->
@@ -147,7 +147,8 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link df-between sub-navLink" href="?action=addService&cate=service">Thêm nhân viên
+                            <a class="nav-link df-between sub-navLink" href="?action=listCommer&cate=commer">Thêm nhân
+                                viên
                                 <span class="show-icon--submenu">
                                     <!-- <i class="mdi mdi-cube-outline position-icon"> </i> -->
                                     <img src="./assets/images/file-icons/logoIcon/logo.png"

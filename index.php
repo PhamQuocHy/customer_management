@@ -58,6 +58,9 @@ try {
                     case 'addService':
                         require_once './views/view-service/service.php';
                         break;
+                    case 'addCommer':
+                        require_once './views/view-user/user.php';
+                        break;
                     case 'dashboard':
                         require_once './views/view-dashboard/dashboard.php';
                         break;
