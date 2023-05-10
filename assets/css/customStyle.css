@@ -197,6 +197,7 @@
 
 .day-title {
     cursor: pointer;
+    text-align: center;
 }
 
 .day-title:hover {
