@@ -67,6 +67,9 @@ try {
                     case 'addCommer':
                         require_once './views/view-user/user.php';
                         break;
+                        case 'listCommer':
+                            require_once './views/view-user/list_user.php';
+                            break;
                     case 'dashboard':
                         require_once './views/view-dashboard/dashboard.php';
                         break;
@@ -74,11 +77,12 @@ try {
                         require_once './views/view-dashboard/addSales.php';
                         break;
                     default:
-                        return header("Location: ?action=dashboard");
+                        header("Location: ?action=dashboard");
+                        exit();
                 }
             } else {
-                // require_once './views/view-child/list_customer.php';
-                return header("Location: ./views/view-account/login.php");
+                header("Location: ?action=dashboard");
+                exit();
             }
             ?>
 

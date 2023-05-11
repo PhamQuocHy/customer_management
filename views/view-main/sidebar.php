@@ -11,7 +11,11 @@
                 <span class="bt-1 line"></span>
             </li>
             <li class="nav-item nav-category">
-                <span class="nav-link">Navigation</span>
+                <span class="nav-link">
+                    Chào Mừng:
+                </span>
+                <p class="user-name"> 
+                    <span><?php echo($_SESSION['user_name'])?></span> <i class="mdi mdi-circle-medium" style="size: 10px; color: lime; position: relative; top: 2px;"></i></p>
             </li>
             <li id="dashboard" class="nav-item menu-items">
                 <a class="nav-link" href="?action=dashboard">
@@ -133,7 +137,11 @@
                     </ul>
                 </div>
             </li>
-            <li id="cateService" class="nav-item menu-items">
+            
+            <!-- nhân viên -->
+            <?php 
+            if ($_SESSION['position'] == '1'){
+                echo '<li id="cateService" class="nav-item menu-items">
                 <a class="nav-link" data-toggle="collapse" href="#userItem" aria-expanded="false"
                     aria-controls="userItem">
                     <span class="menu-icon">
@@ -146,7 +154,7 @@
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item">
                             <a class="nav-link sub-navLink df-between" href="?action=addCommer&cate=commer">
-                                Danh sách Nhân viên
+                                Thêm Nhân Viên
                                 <span class="show-icon--submenu">
 
                                     <!-- <i class="mdi mdi-cube-outline position-icon"> </i> -->
@@ -157,8 +165,7 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link df-between sub-navLink" href="?action=listCommer&cate=commer">Thêm nhân
-                                viên
+                            <a class="nav-link df-between sub-navLink" href="?action=listCommer&cate=commer">Danh sách nhân viên
                                 <span class="show-icon--submenu">
                                     <!-- <i class="mdi mdi-cube-outline position-icon"> </i> -->
                                     <img src="./assets/images/file-icons/logoIcon/logo.png"
@@ -168,7 +175,12 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li>';
+            }else{
+                echo '';
+            }
+            ?>            
+            
         </ul>
     </div>
 </nav>

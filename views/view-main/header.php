@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
     <!-- endinject -->
     <!-- Plugin css for this page -->
+    <link href="../../assets/fonts/Be_Vietnam_Pro/stylesheet.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/vendors/jvectormap/jquery-jvectormap.css" />
     <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css" />
     <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.carousel.min.css" />

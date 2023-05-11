@@ -1,6 +1,58 @@
 <?php
-// require_once './dao/customer.php';
-// require_once './dao/pdo.php';
+require_once "./dao/pdo.php";
+
+// Khởi tạo biến hasError
+$hasError = false;
+
+if (isset($_POST['register'])) {
+    $user_name = $_POST['user_name'];
+    $user_login = $_POST['user_login'];
+    $password = $_POST['password'];
+    $position = $_POST['position'];
+
+    // Kiểm tra xem tên đăng nhập đã tồn tại chưa
+    $stmt = $pdo->prepare('SELECT * FROM user WHERE user_login = :user_login');
+    $stmt->execute(array(':user_login' => $user_login));
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row) {
+        // Nếu tên đăng nhập đã tồn tại, cập nhật biến hasError và hiển thị thông báo lỗi
+        $hasError = true;
+        ?>
+        <script>
+            alert("Tên đăng nhập đã tồn tại. Vui lòng chọn tên khác.");
+        </script>
+        <?php
+    } else {
+        // Nếu tên đăng nhập chưa tồn tại, tiến hành lưu thông tin người dùng vào CSDL
+        $stmt = $pdo->prepare('INSERT INTO user (user_name, user_login, password, position) VALUES (:user_name, :user_login, :password, :position)');
+            $stmt->execute(array(
+                ':user_name' => $user_name,
+                ':user_login' => $user_login,
+                ':password' => $password,
+                ':position' => $position
+            ));
+
+        // Nếu truy vấn lưu dữ liệu không thành công, cập nhật biến hasError
+        if ($stmt->rowCount() === 0) {
+            $hasError = true;
+        }
+    }
+}
+
+if ($hasError) {
+    ?>
+    <script>
+        alert("Thêm nhân viên không thành công. Vui lòng thử lại sau.");
+    </script>
+    <?php
+} elseif (isset($_POST['register'])) {
+    ?>
+    <script>
+        alert("Thêm nhân viên thành công.");
+    </script>
+    <?php
+}
 
 ?>
 
@@ -18,121 +70,28 @@
                                         <h6 class="card-title">Thông tin AME WEB</h6>
                                     </div>
                                     <div class="input-group">
-                                        <label class="label-input" for="ip_hosting">IP Host: </label>
-                                        <input class="ctrl-input" type="text" id="ip_hosting" name="ip_hosting"><br><br>
+                                        <label class="label-input" for="user_name">Tên Đăng Nhập: </label>
+                                        <input class="ctrl-input" type="text" id="user_name" name="user_name"><br><br>
                                     </div>
                                     <div class="input-group">
-                                        <label class="label-input" for="user_hosting">User Host:</label>
-                                        <input class="ctrl-input" type="text" id="user_hosting"
-                                            name="user_hosting"><br><br>
+                                        <label class="label-input" for="user_login">User Login:</label>
+                                        <input class="ctrl-input" type="text" id="user_login" name="user_login"><br><br>
                                     </div>
                                     <div class="input-group">
-                                        <label class="label-input" for="pass_hosting">Password Host:</label>
-                                        <input class="ctrl-input" type="text" id="pass_hosting"
-                                            name="pass_hosting"><br><br>
-                                    </div>
-                                    <div class="input-group">
-                                        <label class="label-input" for="admin_login">Tài khoản Admin:</label>
-                                        <input class="ctrl-input" type="text" id="admin_login"
-                                            name="admin_login"><br><br>
-                                    </div>
-                                    <div class="input-group">
-                                        <label class="label-input" for="password_admin">Mật khẩu admin:</label>
-                                        <input class="ctrl-input" type="text" id="password_admin"
-                                            name="password_admin"><br><br>
-                                    </div>
-                                </div>
-
-                                <div class="col-6 from-mn-warpper mb-20">
-                                    <div>
-                                        <h6 class="card-title">Thông tin khách hàng</h6>
-                                    </div>
-                                    <div class="input-group">
-                                        <label class="label-input" for="id_customer">Mã khách hàng:</label>
-                                        <input class="ctrl-input" type="text" id="id_customer"
-                                            name="id_customer"><br><br>
+                                        <label class="label-input" for="pass_hosting">Password:</label>
+                                        <input class="ctrl-input" type="password" id="password" name="password"><br><br>
                                     </div>
 
                                     <div class="input-group">
-                                        <label class="label-input" for="company_name">Tên công ty:</label>
-                                        <input class="ctrl-input" type="text" id="company_name"
-                                            name="company_name"><br><br>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label class="label-input" for="mst">Mã số thuế:</label>
-                                        <input class="ctrl-input" type="text" id="mst" name="mst"><br><br>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label class="label-input" for="customer_name">Tên khách hàng:</label>
-                                        <input class="ctrl-input" type="text" id="customer_name"
-                                            name="customer_name"><br><br>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label class="label-input" for="phone">Số điện thoại:</label>
-                                        <input class="ctrl-input" type="text" id="phone" name="phone"><br><br>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label class="label-input" for="id_service">Mã dịch dụ:</label>
-                                        <input class="ctrl-input" type="text" id="id_service" name="id_service"><br><br>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label class="label-input" for="customer_login">Tài khoản khách hàng:</label>
-                                        <input class="ctrl-input" type="text" id="customer_login"
-                                            name="customer_login"><br><br>
-                                    </div>
-                                    <div class="input-group">
-                                        <label class="label-input" for="password_user">Mật khẩu khách hàng:</label>
-                                        <input class="ctrl-input" type="text" id="password_user"
-                                            name="password_user"><br><br>
-                                    </div>
-
-
-                                    <div class="input-group">
-                                        <label class="label-input" for="customer_mail">Email khách hàng:</label>
-                                        <input class="ctrl-input" type="email" id="customer_mail"
-                                            name="customer_mail"><br><br>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label class="label-input" for="customer_link">Liên kêt khách hàng:</label>
-                                        <input class="ctrl-input" type="text" id="customer_link"
-                                            name="customer_link"><br><br>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label class="label-input" for="status">Trạng thái:</label>
-
-                                        <select required class="ctrl-input " type="text" id="status" name="status">
-                                            <option value="1">Kích hoạt</option>
-                                            <option value="2">Nghừng kích hoạt</option>
+                                        <label class="label-input" for="position">Bạn là ai:</label>
+                                        <select required class="ctrl-input " type="text"  id="position" name="position">
+                                                <option value="1">Nguyễn Phúc Trọng Nhân</option>
+                                                <option value="2" selected>Nhân Viên</option>
                                         </select>
                                     </div>
-
-                                    <div class="input-group">
-                                        <label class="label-input" for="id_great">Mã khuyến mãi:</label>
-                                        <input class="ctrl-input" type="text" id="id_great" name="id_great"><br><br>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label class="label-input" for="date_start">Ngày bắt đầu:</label>
-                                        <input class="ctrl-input" type="date" id="date_start" name="date_start"><br><br>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label class="label-input" for="date_end">Ngày kết thúc:</label>
-                                        <input class="ctrl-input" type="date" id="date_end" name="date_end"><br><br>
-                                    </div>
                                 </div>
-                            </div>
-
-
                             <div class="input-group justify-content-center">
-                                <input class="btn btn-form" type="submit" value="Thêm nhân viên">
+                                <input class="btn btn-form" type="submit" name="register"  value="Thêm nhân viên">
                             </div>
                         </form>
                     </div>

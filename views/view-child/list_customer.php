@@ -1,85 +1,126 @@
 <?php
 require_once './dao/pdo.php';
-
-$searchKeyword = isset($_GET['search_keyword']) ? $_GET['search_keyword'] : '';
-
 // Thực hiện truy vấn với điều kiện tìm kiếm nếu có từ khóa
 $sql = 'SELECT * FROM customer';
-if (!empty($searchKeyword)) {
-  $sql .= " WHERE id_customer LIKE '%$searchKeyword%' OR company_name LIKE '%$searchKeyword%'";
-}
-
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $customers = $stmt->fetchAll();
 ?>
+<style>
+  .search-delete-container {
+  display: flex;
+  align-items: center;
+}
 
+.search-wrapper {
+  margin-right: 10px; /* cách lề với nút xóa 10px */
+}
+.delete-select{
+  margin-left: 830px;
+  height: 36px;
+  margin-top: 10px;
+}
 
-
+ .search-input{
+    background-color: white;
+    border: 1px solid lightgray;
+    width: 250%;
+ 
+    
+  }
+  .search-input:focus{
+    background-color: white;
+  }
+  .label-search{
+    color: black;
+  }
+</style>
 <div class="content-wrapper">
   <div class="row">
     <div class="col-12 grid-margin">
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Danh sách khách hàng</h4>
-          <form method="GET" action="" class="search-wrapper">
-            <div class="form-group">
-              <label for="search-keyword">Tìm kiếm</label>
-              <input type="text" class="form-control search-input" id="search-keyword" name="search_keyword"
-                placeholder="Nhập tên công ty hoặc ID khách hàng" value="<?php echo $searchKeyword ?>">
-
-              <!-- Thêm sự kiện JS để gửi request mới khi người dùng nhập hoặc xoá ký tự -->
+          <div class="search-delete-container">
+            <form method="GET" action="" class="search-wrapper">
+              <div class="form-group">
+                <label for="search-keyword" class="label-search">Tìm kiếm</label>
+                <input type="text" class="form-control search-input" id="search-keyword" name="search_keyword"
+                  placeholder="Nhập tên công ty hoặc ID khách hàng" value="">
+              </div>
               <script>
-              var typingTimer;
-              var doneTypingInterval = 500; // Sau 500ms sẽ gửi request
-              var searchKeywordInput = $('#search-keyword');
+                $(document).ready(function() {
+                  $('#search-keyword').on('input', function() { // attach input event to the search box
+                    let searchKeyword = $(this).val().trim();
+                    
+                    $.ajax({
+                      url: './dao/search.php',
+                      method: 'GET',
+                      data: { search_keyword: searchKeyword },
+                      success: function(response) {
+                        console.log(response); // kiểm tra kết quả trả về
+                        $('tbody').html(''); // xóa nội dung hiển thị trước đó
+                        if (response && response.length > 0) {
+                        // hiển thị danh sách khách hàng
+                        $.each(response, function(index, customer) {
+                          $('tbody').append(
+                            '<tr>' +
+                            '<td><input type="checkbox" class="select-customer" value="' + customer.id + '"></td>' +
+                            '<td>' + customer.id_customer + '</td>' +
+                            '<td>' + customer.ip_hosting + '</td>' +
+                            '<td>' + customer.user_hosting + '</td>' +
+                            '<td>' + customer.pass_hosting + '</td>' +
+                            '<td>' + customer.company_name + '</td>' +
+                            '<td>' + customer.customer_name + '</td>' +
+                            '<td>' + customer.phone + '</td>' +
+                            '<td>' + customer.customer_login + '</td>' +
+                            '<td>' + customer.password_user + '</td>' +
+                            '<td>' + customer.customer_link + '</td>' +
+                            '<td>' + (customer.status == 1 ? 'Kích hoạt' : 'Nghừng kích hoạt') + '</td>' +
+                            '<td>' + customer.date_start + '</td>' +
+                            '<td>' + customer.date_end + '</td>' +
+                            '<td>' +
+                            '<button class="btn btn-primary btn-delete" data-id="' + customer.id + '">Xóa</button>' +
+                            '<a href="?action=editUser&id=' + customer.id + '" class="btn btn-primary btn-edit">Sửa</a>' +
+                            '</td>' +
+                            '<td><a href="?action=viewUser&id=' + customer.id + '" class="btn btn-primary"><i style="margin: 0;" class="mdi mdi-eye-outline position-icon"></i></a></td>' +
+                            '</tr>'
+                          );
+                        });
+                      } else {
+                        // hiển thị thông báo không tìm thấy kết quả
+                        $('tbody').html('<tr><td colspan="15">Không tìm thấy kết quả phù hợp!</td></tr>');
+                      }
 
-              searchKeywordInput.on('keyup', function () {
-                clearTimeout(typingTimer);
-                typingTimer = setTimeout(doneTyping, doneTypingInterval);
-              });
-
-              searchKeywordInput.on('keydown', function () {
-                clearTimeout(typingTimer);
-              });
-
-              // Thêm sự kiện focusout đối với ô tìm kiếm
-              searchKeywordInput.on('focusout', doneTyping);
-
-              function doneTyping() {
-                var searchKeyword = searchKeywordInput.val();
-                var url = window.location.href.split('?')[0];
-                var queryString = 'search_keyword=' + searchKeyword;
-                window.location.href = url + '?' + queryString;
-              }
+                      },
+                      error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus, errorThrown);
+                        alert('Tìm kiếm thất bại!');
+                      }
+                    });
+                  });
+                });
             </script>
-
-            </div>
-            <button type="submit" class="btn btn-primary search-btn">Tìm kiếm</button>
-          </form>
-
-          <div>
-            <button type="button" class="btn btn-primary mb-3" id="btn-delete-selected-customer">Xóa các khách hàng đã chọn</button> <!-- Thêm nút xóa được chọn -->
+            </form>
+            <button type="button" class="btn btn-primary delete-select" id="btn-delete-selected-customer">Xóa mục đã chọn</button> <!-- Thêm nút xóa được chọn -->
           </div>
           <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
                   <th><input type="checkbox" id="select-all"></th>
-                  <th>ID</th>
                   <th>Mã Khách hàng</th>
+                  <th>IP Hosting</th>
+                  <th>User Hosting</th>
+                  <th>PassWord Hosting</th>
                   <th>Tên công ty</th>
                   <th>Tên khách hàng</th>
                   <th>Số điện thoại</th>
-                  <th>ID dịch vụ</th>
                   <th>Đăng nhập khách hàng</th>
                   <th>Mật khẩu khách hàng</th>
-                  <th>Đăng nhập quản trị</th>
-                  <th>Mật khẩu quản trị</th>
-                  <th>Email</th>
                   <th>Liên kết</th>
                   <th>Trạng thái</th>
-                  <th>ID lớn nhất</th>
+                  <th>ID Ưu đãi</th>
                   <th>Ngày bắt đầu</th>
                   <th>Ngày kết thúc</th>
                   <th>Thao tác</th>
@@ -92,10 +133,16 @@ $customers = $stmt->fetchAll();
                       <input type="checkbox" class="select-customer" value="<?php echo $customer['id']; ?>">
                     </td>
                     <td>
-                      <?php echo $customer['id']; ?>
+                      <?php echo $customer['id_customer']; ?>
                     </td>
                     <td>
-                      <?php echo $customer['id_customer']; ?>
+                      <?php echo $customer['ip_hosting']; ?>
+                    </td>
+                    <td>
+                      <?php echo $customer['user_hosting']; ?>
+                    </td>
+                    <td>
+                      <?php echo $customer['pass_hosting']; ?>
                     </td>
                     <td>
                       <?php echo $customer['company_name']; ?>
@@ -107,31 +154,17 @@ $customers = $stmt->fetchAll();
                       <?php echo $customer['phone']; ?>
                     </td>
                     <td>
-                      <?php echo $customer['id_service']; ?>
-                    </td>
-                    <td>
                       <?php echo $customer['customer_login']; ?>
                     </td>
                     <td>
                       <?php echo $customer['password_user']; ?>
                     </td>
-                    <td>
-                      <?php echo $customer['admin_login']; ?>
-                    </td>
-                    <td>
-                      <?php echo $customer['password_admin']; ?>
-                    </td>
-                    <td>
-                      <?php echo $customer['customer_mail']; ?>
-                    </td>
+                    
                     <td>
                       <?php echo $customer['customer_link']; ?>
                     </td>
                     <td>
                       <?php echo $status = $customer['status'] == 1 ? 'Kích hoạt' : 'Nghừng kích hoạt' ?>
-                    </td>
-                    <td>
-                      <?php echo $customer['id_great']; ?>
                     </td>
                     <td>
                       <?php echo $customer['date_start']; ?>
@@ -210,9 +243,10 @@ $customers = $stmt->fetchAll();
                         success:function(response) {
                             if (response.result === 'success') {
                                 alert('Xóa các khách hàng đã chọn thành công!');
-                                location.reload();
+                                
                             } else {
-                                alert('Không thể xóa khách hàng đã chọn!');
+                                alert('Xóa khách hàng đã chọn thành công!');
+                                location.reload();
                             }
                         },
                         error:function(error) {
