@@ -78,6 +78,7 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
 
 <script>
     let ctx = document.getElementById('myChart').getContext('2d');
+    const listColorDialog = ['000', '7A36D9', '3377BC'];
     let topSales = [];
     let listMonth = [];
     let listDataSheet = [];
@@ -114,7 +115,6 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
         return listMonth;
     })()
     // console.log(topSales); // In ra chuỗi đã định dạng
-    console.log(listSales); // In ra chuỗi đã định dạng
     // console.log(listMonth); // In ra chuỗi đã định dạng
     // arr = [
     //     { date: '05/2022', coin: '6000000', idService: '5' },
@@ -127,7 +127,9 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
 
     const handleCreateDataSheet = (() => {
         let tempArr = [];
-        for (const sale of topSales) {
+        topSales.forEach(function (sale, index) {
+            // for (const sale of topSales) {
+            const newListMonth = [...listMonth];
             for (const saleItem of listSales) {
                 if (sale.id == saleItem.id_service) {
                     const dateArr = saleItem.date_start.split('-');
@@ -154,6 +156,7 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
 
                 const resultArr = [];
 
+
                 for (let date in resultObj) {
                     for (let idService in resultObj[date]) {
                         resultArr.push({ date: date, coin: resultObj[date][idService], idService: idService });
@@ -161,15 +164,30 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
                 }
                 // const arr = ['01/2023', '02/2023', '03/2023', '04/2023', '05/2023', '06/2023', '07/2023', '08/2023', '09/2023', '10/2023', '11/2023', '12/2023'];
                 // const list = [{ date: '05/2023', coin: '10000000', idService: '4' }, { date: '04/2023', coin: '6000000', idService: '5' }];
-                listMonth.forEach((date, index) => {
+                newListMonth.forEach((date, index) => {
                     resultArr.forEach(item => {
-                        if (item.date === date) {
-                            listMonth[index] = item.coin;
+                        if (sale.id == item.idService) {
+                            if (item.date === date) {
+                                newListMonth[index] = item.coin;
+                            } else {
+                                if (typeof newListMonth[index] == 'string') {
+                                    newListMonth[index] = 0;
+                                }
+                            }
                         }
                     });
                 });
-                console.log('resultArr', resultArr);
-                console.log('listMonth', listMonth);
+
+                listDataSheet.push({
+                    label: `Service ${sale.id}`,
+                    data: newListMonth,
+                    borderColor: `#${listColorDialog[index]}`,
+                    backgroundColor: '#fff',
+                    tension: 0.2,
+                    pointStyle: 'circle',
+                    pointRadius: 5,
+                    pointHoverRadius: 10,
+                })
             }
             // listDataSheet.push({
             //     label: 'Dòng ',
@@ -181,45 +199,14 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
             //     pointRadius: 5,
             //     pointHoverRadius: 10,
             // })
-        }
+        })
     })()
-
-
+    console.log(listService);
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: listMonth,
-            datasets: [{
-                label: 'Dòng 1',
-                data: [12000, 19000, 3000, 5000, 2000, 3000],
-                borderColor: '#3377BC',
-                backgroundColor: '#fff',
-                // tension: 0.4,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointHoverRadius: 10,
-                // yAxisID: 'y',
-            }, {
-                label: 'Dòng 2',
-                data: [3, 15, 8, 7, 1, 10],
-                borderColor: '#00BBEF',
-                backgroundColor: '#fff',
-                // tension: 0.4,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointHoverRadius: 10,
-                yAxisID: 'y1',
-            }, {
-                label: 'Dòng 3',
-                data: [2, 6, 20, 11, 2, 10],
-                borderColor: '#000',
-                backgroundColor: '#fff',
-                // tension: 0.4,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointHoverRadius: 10,
-                yAxisID: 'y1',
-            }]
+            datasets: listDataSheet
         },
         options: {
             responsive: true,
