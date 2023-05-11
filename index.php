@@ -73,6 +73,9 @@ try {
                     case 'dashboard':
                         require_once './views/view-dashboard/dashboard.php';
                         break;
+                    case 'addSales':
+                        require_once './views/view-dashboard/addSales.php';
+                        break;
                     default:
                         header("Location: ?action=dashboard");
                         exit();

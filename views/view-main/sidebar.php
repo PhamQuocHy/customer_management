@@ -21,6 +21,14 @@
                     <span class="menu-title">Thống kê</span>
                 </a>
             </li>
+            <li id="addSales" class="nav-item menu-items">
+                <a class="nav-link" href="?action=addSales">
+                    <span class="menu-icon">
+                        <i class="mdi mdi-vpn"></i>
+                    </span>
+                    <span class="menu-title">Thêm doanh thu</span>
+                </a>
+            </li>
             <li id="cateUser" class="nav-item menu-items">
                 <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
                     aria-controls="ui-basic">
@@ -133,7 +141,7 @@
                 <a class="nav-link" data-toggle="collapse" href="#userItem" aria-expanded="false"
                     aria-controls="userItem">
                     <span class="menu-icon">
-                        <i class="mdi mdi-animation"></i>
+                        <i class="mdi mdi-odnoklassniki"></i>
                     </span>
                     <span class="menu-title">Nhân viên</span>
                     <i class="menu-arrow"></i>
@@ -144,7 +152,9 @@
                             <a class="nav-link sub-navLink df-between" href="?action=addCommer&cate=commer">
                                 Thêm Nhân Viên
                                 <span class="show-icon--submenu">
+
                                     <!-- <i class="mdi mdi-cube-outline position-icon"> </i> -->
+
                                     <img src="./assets/images/file-icons/logoIcon/logo.png"
                                         class="position-icon logo-icon" alt="">
                                 </span>
