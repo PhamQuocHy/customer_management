@@ -70,24 +70,15 @@ try {
                     case 'dashboard':
                         require_once './views/view-dashboard/dashboard.php';
                         break;
+                    case 'addSales':
+                        require_once './views/view-dashboard/addSales.php';
+                        break;
                     default:
-<<<<<<< HEAD
-                        header("Location: ?action=dashboard");
-                        exit();
-                }
-            } else {
-                header("Location: ?action=dashboard");
-                exit();
-=======
                         return header("Location: ?action=dashboard");
-
                 }
             } else {
                 // require_once './views/view-child/list_customer.php';
                 return header("Location: ./views/view-account/login.php");
-                // exit();
-            
->>>>>>> 85d49de0dd2cfc900246488400d48aa8a797e7fe
             }
             ?>
 

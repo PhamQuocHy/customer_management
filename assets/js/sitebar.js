@@ -53,6 +53,9 @@ const activeSitebar = () => {
   if (actionQuery == "dashboard") {
     const navItem = document.querySelector("#dashboard");
     navItem.classList.add("active");
+  } else if (actionQuery == "addSales") {
+    const navItem = document.querySelector("#addSales");
+    navItem.classList.add("active");
   }
 };
 activeSitebar();
