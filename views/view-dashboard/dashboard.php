@@ -78,7 +78,7 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
 
 <script>
     let ctx = document.getElementById('myChart').getContext('2d');
-    const listColorDialog = ['000', '7A36D9', '3377BC'];
+    const listColorDialog = ['ff0000', 'ffc72b', '3377BC'];
     let topSales = [];
     let listMonth = [];
     let listDataSheet = [];
@@ -177,13 +177,15 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
                         }
                     });
                 });
-
+                const nameService = listService.filter(function (item) {
+                    return item.id_services == sale.id;
+                })
                 listDataSheet.push({
-                    label: `Service ${sale.id}`,
+                    label: nameService[0].services_name,
                     data: newListMonth,
                     borderColor: `#${listColorDialog[index]}`,
                     backgroundColor: '#fff',
-                    tension: 0.2,
+                    tension: 0,
                     pointStyle: 'circle',
                     pointRadius: 5,
                     pointHoverRadius: 10,
@@ -201,7 +203,6 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
             // })
         })
     })()
-    console.log(listService);
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -218,7 +219,7 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
             plugins: {
                 title: {
                     display: true,
-                    text: 'Chart.js Line Chart - Multi Axis'
+                    text: 'DOANH THU 3 DỊCH VỤ HOT NHẤT Ở AME DIGITAL'
                 }
             },
             scales: {
