@@ -15,7 +15,7 @@
                     Chào Mừng:
                 </span>
                 <p class="user-name"> 
-                    <span><?php echo($_SESSION['user_name'])?></span> <i class="mdi mdi-circle-medium" style="size: 10px; color: lime; position: relative; top: 2px;"></i></p>
+                    <span style="text-transform: capitalize;"><?php echo($_SESSION['user_name'])?></span> <i class="mdi mdi-circle-medium" style="size: 10px; color: lime; position: relative; top: 2px;"></i></p>
             </li>
             <li id="dashboard" class="nav-item menu-items">
                 <a class="nav-link" href="?action=dashboard">
