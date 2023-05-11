@@ -22,19 +22,19 @@ $customer = $stmt->fetch();
                   <div class="input-group">
                     <label class="label-input" for="id_customer">ID Host:</label>
                     <input required class="ctrl-input " type="text" id="id_customer" name="id_customer"
-                      value="<?php echo $customer['id_customer']; ?>">
+                      value="<?php echo $customer['ip_hosting']; ?>">
                     <input required class="ctrl-input" hidden type="text" id="id" value="<?php echo $customer['id'] ?>">
                   </div>
                   <div class="input-group">
                     <label class="label-input" for="id_customer">User Host:</label>
                     <input required class="ctrl-input " type="text" id="id_customer" name="id_customer"
-                      value="<?php echo $customer['id_customer']; ?>">
+                      value="<?php echo $customer['user_hosting']; ?>">
                     <input required class="ctrl-input" hidden type="text" id="id" value="<?php echo $customer['id'] ?>">
                   </div>
                   <div class="input-group">
                     <label class="label-input" for="id_customer">Password Host:</label>
                     <input required class="ctrl-input " type="text" id="id_customer" name="id_customer"
-                      value="<?php echo $customer['id_customer']; ?>">
+                      value="<?php echo $customer['pass_hosting']; ?>">
                     <input required class="ctrl-input" hidden type="text" id="id" value="<?php echo $customer['id'] ?>">
                   </div>
 

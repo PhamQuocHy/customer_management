@@ -26,8 +26,10 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                     <div class="navbar-profile">
-                        <p class="mb-0 d-none d-sm-block navbar-profile-name">
-                        <?php echo($_SESSION['user_login'])?>
+                        
+                        <p class="mb-0 d-none d-sm-block navbar-profile-name" style="font-size: 15px;">
+                        <i class="mdi mdi-account-check" style="color: white; "></i>
+                            <?php echo($_SESSION['user_name'])?>
                         </p>
                         <i class="mdi mdi-menu-down d-none d-sm-block position-icon"></i>
                     </div>

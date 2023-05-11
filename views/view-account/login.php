@@ -6,6 +6,7 @@ require_once '../../dao/pdo.php';
 if (isset($_POST['login'])) {
     $user_login = $_POST['user_login'];
     $password = $_POST['password'];
+    
 
     // Kiểm tra thông tin đăng nhập có đúng không
     // Lấy thông tin người dùng từ CSDL dựa trên tên đăng nhập
@@ -16,6 +17,9 @@ if (isset($_POST['login'])) {
         if ($user && $password === $user['password']) {
             // Lưu thông tin người dùng vào session và chuyển hướng đến trang chính
             $_SESSION['user_login'] = $user_login;
+            $_SESSION['position'] = $user['position'];
+            $_SESSION['user_name'] = $user['user_name'];
+            // print_r($user['user_name']);
             header("Location: /ameweb_be/index.php?action=dashboard");
 
             exit();
@@ -23,7 +27,6 @@ if (isset($_POST['login'])) {
             // Thông báo lỗi đăng nhập không thành công
             echo '<p style="color: red;">Tên đăng nhập hoặc mật khẩu không đúng.</p>';
         }
-
 }
 ?>
 
