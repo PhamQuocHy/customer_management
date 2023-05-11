@@ -16,7 +16,7 @@ $customers = $stmt->fetchAll();
   margin-right: 10px; /* cách lề với nút xóa 10px */
 }
 .delete-select{
-  margin-left: 846px;
+  margin-left: 830px;
   height: 36px;
   margin-top: 10px;
 }
@@ -243,9 +243,10 @@ $customers = $stmt->fetchAll();
                         success:function(response) {
                             if (response.result === 'success') {
                                 alert('Xóa các khách hàng đã chọn thành công!');
-                                location.reload();
+                                
                             } else {
-                                alert('Không thể xóa khách hàng đã chọn!');
+                                alert('Xóa khách hàng đã chọn thành công!');
+                                location.reload();
                             }
                         },
                         error:function(error) {

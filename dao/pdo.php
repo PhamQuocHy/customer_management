@@ -5,6 +5,11 @@ $dbname = 'ameweb_admin';
 $username = 'root';
 $password = '';
 
+// $host = 'localhost';
+// $dbname = 'ameweb_admin';
+// $username = 'ameweb_admin';
+// $password = 'AnhmeemDigital@190920';
+
 // Khởi tạo đối tượng PDO và thiết lập các thuộc tính
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);

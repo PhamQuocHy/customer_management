@@ -11,7 +11,11 @@
                 <span class="bt-1 line"></span>
             </li>
             <li class="nav-item nav-category">
-                <span class="nav-link">Navigation</span>
+                <span class="nav-link">
+                    Chào Mừng:
+                </span>
+                <p class="user-name"> 
+                    <span><?php echo($_SESSION['user_name'])?></span> <i class="mdi mdi-circle-medium" style="size: 10px; color: lime; position: relative; top: 2px;"></i></p>
             </li>
             <li id="dashboard" class="nav-item menu-items">
                 <a class="nav-link" href="?action=dashboard">
