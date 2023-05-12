@@ -23,21 +23,32 @@ echo '<script>let allservices = ' . json_encode($allservices) . '; </script>';
                 <div class="card-body">
                     <h4 class="card-title">Thêm doanh thu mới</h4>
                     <div class="form-wrapper">
-                        <form method="POST" action="./dao/sales.php">
+                        <form id="formCustomer" method="POST" action="./dao/sales.php">
                             <div class="form-flex--wrapper">
                                 <div class="from-mn-warpper mb-20">
 
                                     <div class="input-group">
                                         <label class="label-input" for="id_customer">Khách hàng:</label>
-                                        <select required class="ctrl-input" id="id_customer" name="id_customer">
-                                            <option value="">--Chọn Khách hàng--</option>
-                                            <?php foreach ($customers as $customer) { ?>
-                                                <option value="<?php echo $customer['id'] ?>"><?php echo $customer['company_name'] ?>
-                                                </option>
-                                            <?php } ?>
-                                        </select>
+                                        <div style="display: flex; flex: 1">
+                                            <div class="input-sub--wrarpper">
+                                                <input type="text" id="searchCustomerCtrl" style="width: 100%"
+                                                    class="ctrl-input"
+                                                    placeholder="Nhập mã Khách hàng hoặc tên công ty">
+                                                <div id="listCustomerBox" class="listCustomer">
+                                                    <!-- <span class="customer-item">Alpha Group</span> -->
+                                                </div>
+                                            </div>
+                                            <select hidden style="margin-left: 20px;" class="ctrl-input"
+                                                id="id_customer" name="id_customer">
+                                                <option value="">--Chọn Khách hàng--</option>
+                                                <?php foreach ($customers as $customer) { ?>
+                                                    <option value="<?php echo $customer['id'] ?>"><?php echo $customer['company_name'] ?>
+                                                    </option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="input-group">
+                                    <div id="customerWrapper" class="input-group">
                                         <label class="label-input" for="typeService">Loại dịch vụ:</label>
                                         <select required class="ctrl-input" id="typeService" name="typeService">
                                             <option value="">--Chọn loại dịch vụ--</option>
@@ -73,7 +84,8 @@ echo '<script>let allservices = ' . json_encode($allservices) . '; </script>';
                                     </div>
 
                                     <div class="input-group justify-content-end mt-30">
-                                        <button class="btn btn-form" name="submitBtn">Thêm doanh thu</button>
+                                        <button class="btn btn-form" name="submitBtn" id="btnSubmit">Thêm doanh
+                                            thu</button>
                                     </div>
                                 </div>
                             </div>
@@ -91,17 +103,6 @@ echo '<script>let allservices = ' . json_encode($allservices) . '; </script>';
     // const newListService = JSON
     // Auto Write Date
     const customerElement = document.getElementById('id_customer');
-    // const dateInput = document.getElementById('date');
-    // customerElement.onchange = function (item) {
-    //     let idCustomer = customerElement.value
-    //     let customer = allCustomer.filter(function (item) {
-    //         return item.id == idCustomer;
-    //     })
-    //     if (customer[0].date_start) {
-    //         // console.log(customer[0].date_start);
-    //         dateInput.value = customer[0].date_start;
-    //     }
-    // }
 
     // Check Type Service
     const typeServiceEle = document.getElementById('typeService');
@@ -179,4 +180,95 @@ echo '<script>let allservices = ' . json_encode($allservices) . '; </script>';
             priceInput.value = service[0].price_services;
         }
     }
+</script>
+
+<script>
+    $(document).ready(function () {
+        const listCustomerBox = document.getElementById('listCustomerBox');
+        const customerWrapper = document.getElementById('customerWrapper');
+        const searchCustomerCtrl = document.getElementById('searchCustomerCtrl');
+        const IdCustomerBox = document.getElementById('id_customer');
+        const formCustomer = document.getElementById('formCustomer');
+        const btnSubmit = document.getElementById('btnSubmit');
+        formCustomer.onsubmit = function (e) {
+            if (IdCustomerBox.value.trim() == '') {
+                e.preventDefault();
+            }
+        }
+
+        if (IdCustomerBox.value == '') {
+            btnSubmit.disabled = true;
+        }
+
+        function searchCustomer(input) {
+            $.ajax({
+                url: './dao/search.php',
+                method: 'GET',
+                data: { search_keyword: input },
+                success: function (response) {
+                    listCustomerBox.innerHTML = '';
+                    IdCustomerBox.value = "";
+                    if (response && response.length > 0) {
+                        // hiển thị danh sách khách hàng
+                        console.log(response); // kiểm tra kết quả trả về
+
+                        response.forEach(function (customer) {
+                            const spanElement = document.createElement("span");
+                            spanElement.classList.add('customer-item');
+                            spanElement.setAttribute('customer-id', customer.id);
+                            spanElement.innerHTML = customer.company_name;
+                            listCustomerBox.appendChild(spanElement);
+                        })
+                        handleChooseCostomer();
+                    } else {
+                        // hiển thị thông báo không tìm thấy kết quả
+                        // $('tbody').html('<tr><td colspan="15">Không tìm thấy kết quả phù hợp!</td></tr>');
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                    alert('Tìm kiếm thất bại!');
+                }
+            });
+        };
+
+        searchCustomerCtrl.onfocus = function () {
+            listCustomerBox.style.display = 'flex';
+            searchCustomer(searchCustomerCtrl.value);
+        }
+
+        function handleChooseCostomer() {
+            const listElementCustomer = document.querySelectorAll('[customer-id]');
+            console.log(listElementCustomer);
+            listElementCustomer.forEach(function (element, i) {
+                element.addEventListener('mousedown', function () {
+                    console.log("Clicked element: ", element.getAttribute('customer-id'), "Index: ", i);
+                    IdCustomerBox.value = element.getAttribute('customer-id');
+                    searchCustomerCtrl.value = element.textContent;
+                    checkBtn();
+                });
+            });
+        }
+
+        function checkBtn() {
+            console.log(IdCustomerBox.value);
+            if (IdCustomerBox.value == '') {
+                btnSubmit.disabled = true;
+            } else {
+                btnSubmit.disabled = false;
+            }
+        }
+
+        searchCustomerCtrl.onblur = function () {
+            listCustomerBox.style.display = 'none';
+            checkBtn();
+        }
+
+        $('#searchCustomerCtrl').on('input', function () { // attach input event to the search box
+            let searchKeyword = $(this).val().trim();
+            searchCustomer(searchKeyword);
+            handleChooseCostomer();
+        });
+    });
 </script>

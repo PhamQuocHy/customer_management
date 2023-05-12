@@ -10,6 +10,10 @@
     color: var(--text-color);
 }
 
+.ctrl-input + .ctrl-input {
+    margin-left: 20px;
+}
+
 .wrapp {
     white-space: unset !important;
 }
@@ -172,6 +176,7 @@
     flex: 1;
     padding: 6px;
     /* border: 1px solid var(--primary-color); */
+    min-height: 36px;
     border: none;
     border-radius: 4px;
     outline: none;
@@ -246,4 +251,35 @@
 }
 .toltal-item--content span {
     font-size: 16px;
+}
+
+.input-sub--wrarpper {
+    flex: 1;
+    position: relative;
+}
+
+.listCustomer {
+    position: absolute;
+    background-color: #fff;
+    color: var(--text-color);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    /* padding: 4px 0; */
+    border: 1px solid #eee;
+    border-radius: 6px;
+    top: 110%;
+    max-height: 150px;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.customer-item {
+    padding: 2px 20px;
+    margin: 2px 0;
+}
+
+.customer-item:hover {
+    cursor: pointer;
+    background-color: #eee;
 }
