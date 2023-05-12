@@ -232,3 +232,18 @@
     text-decoration: none;
     color: inherit;
 }
+
+.toltal-wrapper {
+    
+}
+.toltal-item {
+    background-color: var(--primary-color);
+    padding: 16px;
+    border-radius: 4px;
+}
+.toltal-item--header h4{
+    font-size: 16px;
+}
+.toltal-item--content span {
+    font-size: 16px;
+}

@@ -6,10 +6,62 @@ require_once './dao/pdo.php';
 $curentDay = date("Y-m-d");
 echo '<script>let listSales = ' . json_encode($sales) . '; </script>';
 echo '<script>let listService = ' . json_encode($service) . '; </script>';
+echo '<script>let listCustomers = ' . json_encode($customers) . '; </script>';
 ?>
 
 <div class="content-wrapper">
     <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Tổng quan về AME Digital</h4>
+                    <div class="card-body">
+                        <div class="toltal-wrapper row">
+                            <div class="col-3">
+                                <div class="toltal-item">
+                                    <div class="toltal-item--header">
+                                        <h4>Tổng doanh thu</h4>
+                                    </div>
+                                    <div class="toltal-item--content">
+                                        <span id="toltalBox"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="toltal-item">
+                                    <div class="toltal-item--header">
+                                        <h4>Doanh thu trong tháng</h4>
+                                    </div>
+                                    <div class="toltal-item--content">
+                                        <span id="toltalMonthBox"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="toltal-item">
+                                    <div class="toltal-item--header">
+                                        <h4>Tổng số khách hàng</h4>
+                                    </div>
+                                    <div class="toltal-item--content">
+                                        <span id="customerBox"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="toltal-item">
+                                    <div class="toltal-item--header">
+                                        <h4>Khách hàng cần gia hạn</h4>
+                                    </div>
+                                    <div class="toltal-item--content">
+                                        <span id="customerDateBox"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-12 grid-margin">
             <div class="card">
                 <div class="card-body">
@@ -108,20 +160,12 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
         let year = today.getFullYear(); // Lấy ra năm hiện tại
 
         for (let month = 1; month <= 12; month++) {
-            let monthFormatted = ("0" + month).slice(-2); // Chuyển đổi số tháng thành chuỗi có độ dài 2, ví dụ 1 -> "01"
-            let monthYearFormatted = monthFormatted + "/" + year; // Kết hợp tháng và năm thành chuỗi định dạng mm/YYYY
+            let monthFormatted = ("0" + month).slice(-2);
+            let monthYearFormatted = monthFormatted + "/" + year;
             listMonth.push(monthYearFormatted);
         }
         return listMonth;
     })()
-    // console.log(topSales); // In ra chuỗi đã định dạng
-    // console.log(listMonth); // In ra chuỗi đã định dạng
-    // arr = [
-    //     { date: '05/2022', coin: '6000000', idService: '5' },
-    //     { date: '04/2023', coin: '6000000', idService: '5' },
-    //     { date: '05/2023', coin: '7000000', idService: '5' },
-    //     { date: '05/2023', coin: '10000000', idService: '4' },
-    //     { date: '04/2023', coin: '6000000', idService: '3' }]
 
 
 
@@ -162,8 +206,6 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
                         resultArr.push({ date: date, coin: resultObj[date][idService], idService: idService });
                     }
                 }
-                // const arr = ['01/2023', '02/2023', '03/2023', '04/2023', '05/2023', '06/2023', '07/2023', '08/2023', '09/2023', '10/2023', '11/2023', '12/2023'];
-                // const list = [{ date: '05/2023', coin: '10000000', idService: '4' }, { date: '04/2023', coin: '6000000', idService: '5' }];
                 newListMonth.forEach((date, index) => {
                     resultArr.forEach(item => {
                         if (sale.id == item.idService) {
@@ -191,16 +233,6 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
                     pointHoverRadius: 10,
                 })
             }
-            // listDataSheet.push({
-            //     label: 'Dòng ',
-            //     data: [12000, 19000, 3000, 5000, 2000, 3000],
-            //     borderColor: '#3377BC',
-            //     backgroundColor: '#fff',
-            //     // tension: 0.4,
-            //     pointStyle: 'circle',
-            //     pointRadius: 5,
-            //     pointHoverRadius: 10,
-            // })
         })
     })()
     var myChart = new Chart(ctx, {
@@ -235,12 +267,60 @@ echo '<script>let listService = ' . json_encode($service) . '; </script>';
 
                     // grid line settings
                     grid: {
-                        drawOnChartArea: true, // only want the grid lines for one axis to show up
+                        drawOnChartArea: true,
                     },
                 },
             }
         },
     });
 
+    myChart.canvas.parentNode.style.height = '400px';
+</script>
 
+<script>
+    const toltalBox = document.getElementById('toltalBox');
+    const toltalMonthBox = document.getElementById('toltalMonthBox');
+    const customerBox = document.getElementById('customerBox');
+    const customerDateBox = document.getElementById('customerDateBox');
+
+    const listCustomersEx = document.querySelectorAll('[data-Item]');
+
+
+    const currentDate = new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" });
+    const currentMonthYear = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "2-digit" }).format(new Date(currentDate));
+    let toltalSale = 0;
+    let toltalSaleAsMonth = 0;
+    let customerNumDate = 0;
+    listService.forEach(function (item, index) {
+        let tempArr = [];
+        for (const sale of listSales) {
+            if (sale.id_service == item.id_services) {
+
+                toltalSale += Number(sale.price);
+                const dateArr = sale.date_start.split('-');
+                const newDateArr = `${dateArr[1]}/${dateArr[0]}`;
+                if (newDateArr == currentMonthYear) {
+                    toltalSaleAsMonth += Number(sale.price);
+                }
+            }
+        }
+    })
+    const fortmatMoney = (coin) => {
+        const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
+        const result = formatter.format(coin);
+        return result
+    }
+    toltalBox.innerHTML = fortmatMoney(toltalSale);
+    toltalMonthBox.innerHTML = fortmatMoney(toltalSaleAsMonth);
+    customerBox.innerHTML = listCustomers.length;
+    for (let i = 0; i < listCustomersEx.length; i++) {
+        const customerDate = listCustomersEx[i].getAttribute('data-Item');
+        const dateArr = customerDate.split('-');
+        const newDateArr = `${dateArr[1]}/${dateArr[0]}`;
+        if (newDateArr == currentMonthYear) {
+
+            ++customerNumDate;
+        }
+    }
+    customerDateBox.innerHTML = customerNumDate;
 </script>
