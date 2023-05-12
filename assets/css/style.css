@@ -7484,7 +7484,7 @@
     --primary-color : #3377BC;
     --sub-primary-color : #00BBEF;
     --background-color : #fff;
-    --sub-background-color : #E3F2F6;
+    --sub-background-color : #e5f5f9;
     --text-color: #333;
   }
 
@@ -20639,7 +20639,7 @@ div.tagsinput {
     -moz-transition: width 0.25s ease;
     -ms-transition: width 0.25s ease;
     box-shadow: 20px 19px 34px -15px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow: 20px 19px 34px -15px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 20px 5px 35px -15px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 20px 19px 34px -15px rgba(0, 0, 0, 0.5);
     color: #ffffff;
     padding-left: 15px;

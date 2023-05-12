@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
         $_SESSION['position'] = $user['position'];
         $_SESSION['user_name'] = $user['user_name'];
         // print_r($user['user_name']);
-        header("Location: /AME/AME-AMIN-BE/index.php?action=dashboard");
+        header("Location: /ameweb_be/index.php?action=dashboard");
         // header("Location: /index.php?action=dashboard");
 
         exit();
