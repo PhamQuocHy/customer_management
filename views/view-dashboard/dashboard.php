@@ -14,7 +14,7 @@ echo '<script>let listCustomers = ' . json_encode($customers) . '; </script>';
         <div class="col-12 grid-margin">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Thống kê tổng thể</h4>
+                    <h4 id="titleToltalMonthDate" class="card-title">Thống kê tổng thể</h4>
                     <div class="card-body">
                         <div class="toltal-wrapper row">
                             <div class="col-3">
@@ -282,12 +282,15 @@ echo '<script>let listCustomers = ' . json_encode($customers) . '; </script>';
     const toltalMonthBox = document.getElementById('toltalMonthBox');
     const customerBox = document.getElementById('customerBox');
     const customerDateBox = document.getElementById('customerDateBox');
+    const titleToltalMonthDate = document.getElementById('titleToltalMonthDate');
 
     const listCustomersEx = document.querySelectorAll('[data-Item]');
 
 
     const currentDate = new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" });
     const currentMonthYear = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "2-digit" }).format(new Date(currentDate));
+    titleToltalMonthDate.innerHTML = `Thống Kê Tổng Thể ${currentMonthYear}`;
+
     let toltalSale = 0;
     let toltalSaleAsMonth = 0;
     let customerNumDate = 0;

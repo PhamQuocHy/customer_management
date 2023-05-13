@@ -35,7 +35,8 @@ echo '<script>let allservices = ' . json_encode($allservices) . '; </script>';
                                                     class="ctrl-input"
                                                     placeholder="Nhập mã Khách hàng hoặc tên công ty">
                                                 <div id="listCustomerBox" class="listCustomer">
-                                                    <!-- <span class="customer-item">Alpha Group</span> -->
+                                                    <span class="customer-item">Alpha Group</span>
+                                                    <span class="customer-item">Alpha Group</span>
                                                 </div>
                                             </div>
                                             <select hidden style="margin-left: 20px;" class="ctrl-input"
@@ -51,7 +52,7 @@ echo '<script>let allservices = ' . json_encode($allservices) . '; </script>';
                                     <div id="customerWrapper" class="input-group">
                                         <label class="label-input" for="typeService">Loại dịch vụ:</label>
                                         <select required class="ctrl-input" id="typeService" name="typeService">
-                                            <option value="">--Chọn loại dịch vụ--</option>
+                                            <option value="">--Chọn loại dịch vụ--</option>`
                                             <option value="1">Dịch vụ có gia hạn</option>
                                             <option value="0">Dịch vụ không gia hạn</option>
                                         </select>
