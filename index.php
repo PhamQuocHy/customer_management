@@ -69,15 +69,19 @@ try {
                     case 'addCommer':
                         require_once './views/view-user/user.php';
                         break;
-                        case 'listCommer':
-                            require_once './views/view-user/list_user.php';
-                            break;
+                    case 'listCommer':
+                        require_once './views/view-user/list_user.php';
+                        break;
+                    case 'editCommer':
+                        require_once './views/view-user/edit-user.php';
+                        break;
                     case 'dashboard':
                         require_once './views/view-dashboard/dashboard.php';
                         break;
                     case 'addSales':
                         require_once './views/view-dashboard/addSales.php';
                         break;
+                   
                     default:
                         header("Location: ?action=dashboard");
                         exit();

@@ -49,6 +49,7 @@ $greats = $stmt->fetchAll();
                     </td>
                     <td>
                       <button class="btn btn-primary btn-delete" data-id="<?php echo $great['id_user']; ?>">Xóa</button>
+                      <a href="?action=editCommer&id=<?php echo $great['id_user']; ?>" class="btn btn-primary btn-edit">Sửa</a>
                     </td>
 
                   </tr>

@@ -14,7 +14,7 @@ echo '<script>let listCustomers = ' . json_encode($customers) . '; </script>';
         <div class="col-12 grid-margin">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Tổng quan về AME Digital</h4>
+                    <h4 class="card-title">Thống kê tổng thể</h4>
                     <div class="card-body">
                         <div class="toltal-wrapper row">
                             <div class="col-3">
@@ -28,7 +28,7 @@ echo '<script>let listCustomers = ' . json_encode($customers) . '; </script>';
                                 </div>
                             </div>
                             <div class="col-3">
-                                <div class="toltal-item">
+                                <div class="toltal-item2">
                                     <div class="toltal-item--header">
                                         <h4>Doanh thu trong tháng</h4>
                                     </div>
@@ -48,7 +48,7 @@ echo '<script>let listCustomers = ' . json_encode($customers) . '; </script>';
                                 </div>
                             </div>
                             <div class="col-3">
-                                <div class="toltal-item">
+                                <div class="toltal-item2">
                                     <div class="toltal-item--header">
                                         <h4>Khách hàng cần gia hạn</h4>
                                     </div>

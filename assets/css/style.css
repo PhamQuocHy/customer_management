@@ -11672,7 +11672,8 @@ input[type="button"].btn-block {
 
 .card-title {
   margin-bottom: 0.75rem; 
-  color: var(--primary-color);
+  color: black;
+  font-family: 700;
 }
 
 .card-subtitle {
@@ -16829,6 +16830,7 @@ code {
       padding-top: 1rem; }
   .card .card-title {
     color: var(--primary-color);
+    font-weight: 600;
     margin-bottom: 1.125rem;
     text-transform: capitalize; }
   .card .card-subtitle {

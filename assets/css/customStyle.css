@@ -237,13 +237,23 @@
     
 }
 .toltal-item {
-    background-color: var(--primary-color);
+    background-color: white;
     padding: 16px;
     border-radius: 4px;
+    border-left: 5px solid  var(--primary-color);
 }
 .toltal-item--header h4{
     font-size: 16px;
+    font-weight: 700;
+    color: black;
 }
 .toltal-item--content span {
     font-size: 16px;
+    color: black;
+}
+.toltal-item2 {
+    background-color: white;
+    padding: 16px;
+    border-radius: 4px;
+    border-left: 5px solid  var(--sub-primary-color);
 }
