@@ -16,6 +16,20 @@ try {
 }
 ?>
 
+<!-- <script>
+    document.addEventListener("keydown", function(e) {
+    // Chặn Ctrl+U
+    if (e.keyCode == 85 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+        e.preventDefault();
+    }
+    // Chặn F12
+    if (event.keyCode == 123) {
+        e.preventDefault();
+    }
+}, false);
+
+</script> -->
+
 
 
 <?php require_once './views/view-main/header.php'; ?>

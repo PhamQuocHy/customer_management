@@ -8,30 +8,34 @@ $customers = $stmt->fetchAll();
 ?>
 <style>
   .search-delete-container {
-  display: flex;
-  align-items: center;
-}
+    display: flex;
+    align-items: center;
+  }
 
-.search-wrapper {
-  margin-right: 10px; /* cách lề với nút xóa 10px */
-}
-.delete-select{
-  margin-left: 830px;
-  height: 36px;
-  margin-top: 10px;
-}
+  .search-wrapper {
+    margin-right: 10px;
+    /* cách lề với nút xóa 10px */
+  }
 
- .search-input{
+  .delete-select {
+    margin-left: 830px;
+    height: 36px;
+    margin-top: 10px;
+  }
+
+  .search-input {
     background-color: white;
     border: 1px solid lightgray;
     width: 250%;
- 
-    
+
+
   }
-  .search-input:focus{
+
+  .search-input:focus {
     background-color: white;
   }
-  .label-search{
+
+  .label-search {
     color: black;
   }
 </style>
@@ -44,65 +48,66 @@ $customers = $stmt->fetchAll();
           <div class="search-delete-container">
             <form method="GET" action="" class="search-wrapper">
               <div class="form-group">
-                <label for="search-keyword" class="label-search">Tìm kiếm</label>
+                <!-- <label for="search-keyword" class="label-search">Tìm kiếm</label> -->
                 <input type="text" class="form-control search-input" id="search-keyword" name="search_keyword"
                   placeholder="Nhập tên công ty hoặc ID khách hàng" value="">
               </div>
               <script>
-                $(document).ready(function() {
-                  $('#search-keyword').on('input', function() { // attach input event to the search box
+                $(document).ready(function () {
+                  $('#search-keyword').on('input', function () { // attach input event to the search box
                     let searchKeyword = $(this).val().trim();
-                    
+
                     $.ajax({
                       url: './dao/search.php',
                       method: 'GET',
                       data: { search_keyword: searchKeyword },
-                      success: function(response) {
+                      success: function (response) {
                         console.log(response); // kiểm tra kết quả trả về
                         $('tbody').html(''); // xóa nội dung hiển thị trước đó
                         if (response && response.length > 0) {
-                        // hiển thị danh sách khách hàng
-                        $.each(response, function(index, customer) {
-                          $('tbody').append(
-                            '<tr>' +
-                            '<td><input type="checkbox" class="select-customer" value="' + customer.id + '"></td>' +
-                            '<td>' + customer.id_customer + '</td>' +
-                            '<td>' + customer.ip_hosting + '</td>' +
-                            '<td>' + customer.user_hosting + '</td>' +
-                            '<td>' + customer.pass_hosting + '</td>' +
-                            '<td>' + customer.company_name + '</td>' +
-                            '<td>' + customer.customer_name + '</td>' +
-                            '<td>' + customer.phone + '</td>' +
-                            '<td>' + customer.customer_login + '</td>' +
-                            '<td>' + customer.password_user + '</td>' +
-                            '<td>' + customer.customer_link + '</td>' +
-                            '<td>' + (customer.status == 1 ? 'Kích hoạt' : 'Nghừng kích hoạt') + '</td>' +
-                            '<td>' + customer.date_start + '</td>' +
-                            '<td>' + customer.date_end + '</td>' +
-                            '<td>' +
-                            '<button class="btn btn-primary btn-delete" data-id="' + customer.id + '">Xóa</button>' +
-                            '<a href="?action=editUser&id=' + customer.id + '" class="btn btn-primary btn-edit">Sửa</a>' +
-                            '</td>' +
-                            '<td><a href="?action=viewUser&id=' + customer.id + '" class="btn btn-primary"><i style="margin: 0;" class="mdi mdi-eye-outline position-icon"></i></a></td>' +
-                            '</tr>'
-                          );
-                        });
-                      } else {
-                        // hiển thị thông báo không tìm thấy kết quả
-                        $('tbody').html('<tr><td colspan="15">Không tìm thấy kết quả phù hợp!</td></tr>');
-                      }
+                          // hiển thị danh sách khách hàng
+                          $.each(response, function (index, customer) {
+                            $('tbody').append(
+                              '<tr>' +
+                              '<td><input type="checkbox" class="select-customer" value="' + customer.id + '"></td>' +
+                              '<td>' + customer.id_customer + '</td>' +
+                              '<td>' + customer.ip_hosting + '</td>' +
+                              '<td>' + customer.user_hosting + '</td>' +
+                              '<td>' + customer.pass_hosting + '</td>' +
+                              '<td>' + customer.company_name + '</td>' +
+                              '<td>' + customer.customer_name + '</td>' +
+                              '<td>' + customer.phone + '</td>' +
+                              '<td>' + customer.customer_login + '</td>' +
+                              '<td>' + customer.password_user + '</td>' +
+                              '<td>' + customer.customer_link + '</td>' +
+                              '<td>' + (customer.status == 1 ? 'Kích hoạt' : 'Nghừng kích hoạt') + '</td>' +
+                              '<td>' + customer.date_start + '</td>' +
+                              '<td>' + customer.date_end + '</td>' +
+                              '<td>' +
+                              '<button class="btn btn-primary btn-delete" data-id="' + customer.id + '">Xóa</button>' +
+                              '<a href="?action=editUser&id=' + customer.id + '" class="btn btn-primary btn-edit">Sửa</a>' +
+                              '</td>' +
+                              '<td><a href="?action=viewUser&id=' + customer.id + '" class="btn btn-primary"><i style="margin: 0;" class="mdi mdi-eye-outline position-icon"></i></a></td>' +
+                              '</tr>'
+                            );
+                          });
+                        } else {
+                          // hiển thị thông báo không tìm thấy kết quả
+                          $('tbody').html('<tr><td colspan="15">Không tìm thấy kết quả phù hợp!</td></tr>');
+                        }
 
                       },
-                      error: function(jqXHR, textStatus, errorThrown) {
+                      error: function (jqXHR, textStatus, errorThrown) {
                         console.log(textStatus, errorThrown);
                         alert('Tìm kiếm thất bại!');
                       }
                     });
                   });
                 });
-            </script>
+              </script>
             </form>
-            <button type="button" class="btn btn-primary delete-select" id="btn-delete-selected-customer">Xóa mục đã chọn</button> <!-- Thêm nút xóa được chọn -->
+            <button type="button" class="btn btn-primary delete-select" id="btn-delete-selected-customer">Xóa mục đã
+              chọn</button> <!-- Thêm nút xóa được chọn -->
           </div>
           <div class="table-responsive">
             <table class="table">
@@ -159,7 +164,7 @@ $customers = $stmt->fetchAll();
                     <td>
                       <?php echo $customer['password_user']; ?>
                     </td>
-                    
+
                     <td>
                       <?php echo $customer['customer_link']; ?>
                     </td>
@@ -214,50 +219,50 @@ $customers = $stmt->fetchAll();
     }
   });
 
-  $(document).ready(function() {
-        // Chọn mọi checkbox nếu checkbox header được chọn
-        $('#select-all').click(function(event) {
-            if (this.checked) {
-                $('.select-customer').each(function() {
-                    this.checked = true;
-                });
-            } else {
-                $('.select-customer').each(function() {
-                    this.checked = false;
-                });
-            }
+  $(document).ready(function () {
+    // Chọn mọi checkbox nếu checkbox header được chọn
+    $('#select-all').click(function (event) {
+      if (this.checked) {
+        $('.select-customer').each(function () {
+          this.checked = true;
         });
-
-        // Xóa các khách hàng được chọn
-        $('#btn-delete-selected-customer').click(function() {
-            var customerIds = [];
-            $(".select-customer:checked").each(function() {
-                customerIds.push($(this).val());
-            });
-            if (customerIds.length > 0) {
-                if (confirm('Bạn có muốn xóa các khách hàng đã chọn?')) {
-                    $.ajax({
-                        url: './dao/delete-customer.php',
-                        type: 'post',
-                        data: {customerIds: customerIds},
-                        success:function(response) {
-                            if (response.result === 'success') {
-                                alert('Xóa các khách hàng đã chọn thành công!');
-                                
-                            } else {
-                                alert('Xóa khách hàng đã chọn thành công!');
-                                location.reload();
-                            }
-                        },
-                        error:function(error) {
-                            alert('Có lỗi xảy ra, vui lòng thử lại sau!');
-                            console.log(error);
-                        }
-                    });
-                }
-            } else {
-                alert('Vui lòng chọn ít nhất một khách hàng để xóa!');
-            }
+      } else {
+        $('.select-customer').each(function () {
+          this.checked = false;
         });
+      }
     });
+
+    // Xóa các khách hàng được chọn
+    $('#btn-delete-selected-customer').click(function () {
+      var customerIds = [];
+      $(".select-customer:checked").each(function () {
+        customerIds.push($(this).val());
+      });
+      if (customerIds.length > 0) {
+        if (confirm('Bạn có muốn xóa các khách hàng đã chọn?')) {
+          $.ajax({
+            url: './dao/delete-customer.php',
+            type: 'post',
+            data: { customerIds: customerIds },
+            success: function (response) {
+              if (response.result === 'success') {
+                alert('Xóa các khách hàng đã chọn thành công!');
+
+              } else {
+                alert('Xóa khách hàng đã chọn thành công!');
+                location.reload();
+              }
+            },
+            error: function (error) {
+              alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+              console.log(error);
+            }
+          });
+        }
+      } else {
+        alert('Vui lòng chọn ít nhất một khách hàng để xóa!');
+      }
+    });
+  });
 </script>
