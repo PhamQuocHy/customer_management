@@ -80,6 +80,9 @@ try {
                     case 'addService':
                         require_once './views/view-service/service.php';
                         break;
+                    case 'viewService':
+                        require_once './views/view-service/view-service.php';
+                        break;
                     case 'addCommer':
                         require_once './views/view-user/user.php';
                         break;
@@ -95,7 +98,7 @@ try {
                     case 'addSales':
                         require_once './views/view-dashboard/addSales.php';
                         break;
-                   
+
                     default:
                         header("Location: ?action=dashboard");
                         exit();

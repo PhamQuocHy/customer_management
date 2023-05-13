@@ -158,6 +158,11 @@ $customer = $stmt->fetch();
                       <?php echo $customer['date_end'] ?>
                     </span>
                   </div>
+
+                  <div class="input-group justify-content-end mt-30">
+                    <a href="?action=listUser&cate=user" class="btn btn-form" name="submitBtn">Quay
+                      lại</a>
+                  </div>
                 </div>
               </div>
             </form>

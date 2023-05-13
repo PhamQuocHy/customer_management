@@ -45,7 +45,7 @@ $allservice = $stmt->fetchAll();
                         class="btn btn-primary btn-edit">Sửa</a>
                     </td>
                     <td>
-                      <a href="?action=viewGreat&idGreat=<?php echo $service['id_services'] ?>&cate=great"
+                      <a href="?action=viewService&idService=<?php echo $service['id_services'] ?>&cate=service"
                         class="btn btn-primary">
                         <i style="margin: 0;" class="mdi mdi-eye-outline position-icon"></i>
                       </a>
